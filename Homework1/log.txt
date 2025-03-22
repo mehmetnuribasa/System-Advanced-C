@@ -1,5 +1,15 @@
-[2025-03-21 16:44:33] Directory created successfully.
-[2025-03-21 16:44:49] Directory deleted successfully.
-[2025-03-22 13:26:02] Directory "test" created successfully.
-[2025-03-22 13:40:39] Directory "test12" created successfully.
-[2025-03-22 13:40:48] Directory "test12" deleted successfully.
+[2025-03-22 18:31:58] Directory "testDir" created successfully.
+[2025-03-22 18:32:11] File "example.txt" created successfully.
+[2025-03-22 18:32:39] Content "Hello, World!" appended to "example.txt" successfully.
+[2025-03-22 18:36:12] Content "New Line" appended to "example.txt" successfully.
+[2025-03-22 18:36:30] File "example.txt" deleted successfully.
+[2025-03-22 18:52:44] File "testDir/example2.txt" created successfully.
+[2025-03-22 18:53:13] Content "trial" appended to "testDir/example2.txt" successfully.
+[2025-03-22 18:55:10] File "testDir/example3.txt" created successfully.
+[2025-03-22 18:55:22] File "testDir/example4.img" created successfully.
+[2025-03-22 18:57:13] Directory "testDir2" created successfully.
+[2025-03-22 18:57:28] Directory "testDir2" deleted successfully.
+[2025-03-22 18:59:26] File "testDir/example3.txt" deleted successfully.
+[2025-03-22 19:02:04] File "sample.txt" created successfully.
+[2025-03-22 21:40:09] File "sample.txt" deleted successfully.
+[2025-03-22 21:40:20] File "sample.txt" created successfully.
