@@ -20,10 +20,10 @@ void printUsage() {
         "Commands:\n"
         "  createDir \"folderName\"                         - Create a new directory\n"
         "  createFile \"fileName\"                          - Create a new file\n"
-        "  listDir \"folderName\"                           - List all files in a directory"
-        "  listFilesByExtension \"folderName\" \".txt\"     - List files with specific extension"
-        "  readFile \"fileName\"                            - Read a file's content"
-        "  appendToFile \"fileName\" \"new content\"        - Append content to a file"
+        "  listDir \"folderName\"                           - List all files in a directory\n"
+        "  listFilesByExtension \"folderName\" \".txt\"     - List files with specific extension\n"
+        "  readFile \"fileName\"                            - Read a file's content\n"
+        "  appendToFile \"fileName\" \"new content\"        - Append content to a file\n"
         "  deleteFile \"fileName\"                          - Delete a file\n"
         "  deleteDir \"folderName\"                         - Delete an empty directory\n"
         "  showLogs                                         - Display operation logs\n";
@@ -31,7 +31,15 @@ void printUsage() {
     write(STDOUT_FILENO, usage, strlen(usage));
 }
 
-void logAction(const char *message) {
+void writeMessage(int fd, const char *prefix, const char *name, const char *suffix) {
+    write(fd, prefix, strlen(prefix));
+    write(fd, "\"", 1);
+    write(fd, name, strlen(name));
+    write(fd, "\"", 1);
+    write(fd, suffix, strlen(suffix));
+}
+
+void logAction(const char *prefix, const char *name, const char *suffix) {
     int fd = open(LOG_FILE, O_WRONLY | O_CREAT | O_APPEND, 0644);
     if (fd == -1) return;
     
@@ -42,7 +50,7 @@ void logAction(const char *message) {
     
     flock(fd, LOCK_EX);
     write(fd, timeBuffer, strlen(timeBuffer));
-    write(fd, message, strlen(message));
+    writeMessage(fd, prefix, name, suffix);
     write(fd, "\n", 1);
     flock(fd, LOCK_UN);
     
@@ -53,23 +61,23 @@ void logAction(const char *message) {
 void createDir(const char *folderName) {
     if (mkdir(folderName, 0755) == -1) {
         if (errno == EEXIST) {
-            write(STDERR_FILENO, "Error: Directory already exists.\n", 33);
+            writeMessage(STDERR_FILENO, "Error: Directory ", folderName, " already exists.\n");
         } else {
-            write(STDERR_FILENO, "Error: Failed to create directory.\n", 35);
+            writeMessage(STDERR_FILENO, "Error: Failed to create ", folderName, " directory.\n");
         }
         return;
     }
-    write(STDOUT_FILENO, "Directory created successfully.\n", 32);
-    logAction("Directory created successfully.");
+    writeMessage(STDOUT_FILENO, "Directory ", folderName, " created successfully.\n");
+    logAction("Directory ", folderName, " created successfully.");
 }
 
 void createFile(const char *fileName) {
     int fd = open(fileName, O_CREAT | O_WRONLY, 0644);
     if (fd == -1) {
         if (errno == EEXIST) {
-            write(STDERR_FILENO, "Error: File already exists.\n", 28);
+            writeMessage(STDERR_FILENO, "Error: File ", fileName, " already exists.\n");
         } else {
-            write(STDERR_FILENO, "Error: Failed to create file.\n", 30);
+            writeMessage(STDERR_FILENO, "Error: Failed to create ", fileName, " file.\n");
         }
         return;
     }
@@ -82,8 +90,8 @@ void createFile(const char *fileName) {
     write(fd, timeBuffer, strlen(timeBuffer));
     close(fd);
     
-    write(STDOUT_FILENO, "File created successfully.\n", 27);
-    logAction("File created successfully.");
+    writeMessage(STDOUT_FILENO, "File ", fileName, " created successfully.\n");
+    logAction("File ", fileName, " created successfully.");
 }
 
 void listDir(const char *folderName) {
@@ -91,7 +99,7 @@ void listDir(const char *folderName) {
     if (pid == 0) { // Çocuk süreç
         DIR *dir = opendir(folderName);
         if (dir == NULL) {
-            write(STDERR_FILENO, "Error: Directory not found.\n", 29);
+            writeMessage(STDERR_FILENO, "Error: Directory ", folderName, " not found.\n");
             exit(1);
         }
         struct dirent *entry;
@@ -112,10 +120,12 @@ void listFilesByExtension(const char *folderName, const char *extension) {
     pid_t pid = fork();
     if (pid == 0) {
         DIR *dir = opendir(folderName);
+        
         if (dir == NULL) {
-            write(STDERR_FILENO, "Error: Directory not found.\n", 29);
+            writeMessage(STDERR_FILENO, "Error: Directory ", folderName, " not found.\n");
             exit(1);
         }
+
         struct dirent *entry;
         int found = 0;
         size_t extLen = strlen(extension);
@@ -140,7 +150,7 @@ void listFilesByExtension(const char *folderName, const char *extension) {
 void readFile(const char *fileName) {
     int fd = open(fileName, O_RDONLY);
     if (fd == -1) {
-        write(STDERR_FILENO, "Error: File not found.\n", 23);
+        writeMessage(STDERR_FILENO, "Error: File ", fileName, " not found.\n");
         return;
     }
     char buffer[256];
@@ -154,11 +164,11 @@ void readFile(const char *fileName) {
 void appendToFile(const char *fileName, const char *content) {
     int fd = open(fileName, O_WRONLY | O_APPEND);
     if (fd == -1) {
-        write(STDERR_FILENO, "Error: Cannot write to file.\n", 28);
+        writeMessage(STDERR_FILENO, "Error: Cannot write to ", fileName, " file.\n");
         return;
     }
     if (flock(fd, LOCK_EX) == -1) {
-        write(STDERR_FILENO, "Error: File is locked.\n", 23);
+        writeMessage(STDERR_FILENO, "Error: File ", fileName, " is locked.\n");
         close(fd);
         return;
     }
@@ -166,19 +176,22 @@ void appendToFile(const char *fileName, const char *content) {
     write(fd, "\n", 1);
     flock(fd, LOCK_UN);
     close(fd);
-    write(STDOUT_FILENO, "Content appended successfully.\n", 32);
-    logAction("Content appended successfully.\n");
+    
+    writeMessage(STDOUT_FILENO, "Content appended to ", fileName, " successfully.\n");
+    logAction("Content appended to ", fileName, " successfully.");
 }
 
 void deleteFile(const char *fileName) {
     pid_t pid = fork();
     if (pid == 0) {
+        
         if (unlink(fileName) == -1) {
-            write(STDERR_FILENO, "Error: File not found.\n", 23);
+            writeMessage(STDERR_FILENO, "Error: File ", fileName, " not found.\n");
             exit(1);
         }
-        write(STDOUT_FILENO, "File deleted successfully.\n", 28);
-        logAction("File deleted successfully.");
+
+        writeMessage(STDOUT_FILENO, "File ", fileName, " deleted successfully.\n");
+        logAction("File ", fileName, " deleted successfully.");
         exit(0);
     } else {
         wait(NULL);
@@ -188,17 +201,19 @@ void deleteFile(const char *fileName) {
 void deleteDir(const char *folderName) {
     pid_t pid = fork();
     if (pid == 0) {
+
         if (rmdir(folderName) == -1) {
             if (errno == ENOTEMPTY) {
-                write(STDERR_FILENO, "Error: Directory is not empty.\n", 31);
+                writeMessage(STDERR_FILENO, "Error: Directory ", folderName, " not empty.\n");
             }
             else {
-                write(STDERR_FILENO, "Error: Directory not found.\n", 29);
+                writeMessage(STDERR_FILENO, "Error: Directory ", folderName, " not found.\n");
             }
             exit(1);
         }
-        write(STDOUT_FILENO, "Directory deleted successfully.\n", 33);
-        logAction("Directory deleted successfully.");
+        
+        writeMessage(STDOUT_FILENO, "Directory ", folderName, " deleted successfully.\n");
+        logAction("Directory ", folderName, " deleted successfully.");
         exit(0);
     } else {
         wait(NULL);

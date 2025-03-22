@@ -1,2 +1,5 @@
 [2025-03-21 16:44:33] Directory created successfully.
 [2025-03-21 16:44:49] Directory deleted successfully.
+[2025-03-22 13:26:02] Directory "test" created successfully.
+[2025-03-22 13:40:39] Directory "test12" created successfully.
+[2025-03-22 13:40:48] Directory "test12" deleted successfully.
