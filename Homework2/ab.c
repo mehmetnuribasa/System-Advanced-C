@@ -1,140 +1,3 @@
-#include <time.h>
-
-#define TIMEOUT 10 // Timeout süresi (saniye cinsinden)
-
-
-// int daemon_fd = open(DAEMON_FIFO, O_RDONLY | O_NONBLOCK);
-
-void sigchld_handler(int signum) {
-    int status;
-    pid_t pid;
-    while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
-        // Zombie protection
-        if (WIFEXITED(status)) {
-            printf("Child process %d exited with status %d\n", pid, WEXITSTATUS(status));
-        } else if (WIFSIGNALED(status)) {
-            printf("Child process %d was terminated by signal %d\n", pid, WTERMSIG(status));
-        } else {
-            printf("Child process %d status is unknown\n", pid);
-        }
-        counter += 2; // Increase counter by 2
-    }
-}
-
-void sigterm_handler(int signum) {
-    printf("SIGTERM received. Shutting down gracefully...\n");
-    // Cleanup code here if necessary
-    exit(EXIT_SUCCESS);
-}
-
-void sighup_handler(int signum) {
-    printf("SIGHUP received. Reconfiguring...\n");
-    // Reconfiguration logic here
-    // For example, reload configurations or reinitialize certain parts of the program
-}
-
-void timeout_mechanism(pid_t child_pid) {
-    time_t start_time = time(NULL);
-    while (1) {
-        sleep(1);
-        if (time(NULL) - start_time >= TIMEOUT) {
-            // Timeout - kill the child if it is still running
-            printf("Timeout reached, killing child process %d\n", child_pid);
-            kill(child_pid, SIGKILL); // Forcefully kill the child process
-            break;
-        }
-    }
-}
-
-void daemon_process() {
-    // Redirect stdout and stderr to log files
-    freopen("/tmp/daemon_output.log", "a", stdout);
-    freopen("/tmp/daemon_error.log", "a", stderr);
-
-    FILE *log_file = fopen("/tmp/daemon_log.txt", "a");  // Log dosyası (append mode)
-    if (!log_file) {
-        perror("Daemon: Failed to open log file");
-        exit(EXIT_FAILURE);
-    }
-
-    time_t start_time = time(NULL);
-    fprintf(log_file, "[%ld] Daemon started with PID: %d\n", start_time, getpid());
-    fflush(log_file);
-
-    int daemon_fd = open(DAEMON_FIFO, O_RDONLY);
-    if (daemon_fd == -1) {
-        fprintf(log_file, "[%ld] Daemon: Error opening FIFO\n", time(NULL));
-        perror("open"); // stderr loga yönlendirildi
-        fclose(log_file);
-        exit(EXIT_FAILURE);
-    }
-
-    int num1, num2;
-    while (read(daemon_fd, &num1, sizeof(int)) > 0 &&
-           read(daemon_fd, &num2, sizeof(int)) > 0) {
-        fprintf(log_file, "[%ld] Daemon logged: Received numbers %d and %d\n", time(NULL), num1, num2);
-        fflush(log_file);
-    }
-
-    time_t end_time = time(NULL);
-    fprintf(log_file, "[%ld] Daemon exiting. PID: %d\n", end_time, getpid());
-    fflush(log_file);
-
-    fclose(log_file);
-    close(daemon_fd);
-    exit(EXIT_SUCCESS);
-}
-
-int main(int argc, char *argv[]) {
-    // Signal handlers for termination and reconfiguration
-    signal(SIGTERM, sigterm_handler);  // Handle SIGTERM for graceful shutdown
-    signal(SIGHUP, sighup_handler);    // Handle SIGHUP for reconfiguration
-
-    // Signal handler for child process exit
-    struct sigaction sa;
-    sa.sa_handler = sigchld_handler;
-    sigemptyset(&sa.sa_mask);
-    sa.sa_flags = SA_RESTART;
-    sigaction(SIGCHLD, &sa, NULL);
-
-    // Parent, daemon, and child processes...
-    // Daemon process, child process creation, and communication here...
-
-    pid_t child1 = fork();
-    if (child1 == 0) {
-        // Timeout monitoring for Child 1
-        timeout_mechanism(getpid());
-    }
-
-    pid_t child2 = fork();
-    if (child2 == 0) {
-        // Timeout monitoring for Child 2
-        timeout_mechanism(getpid());
-    }
-
-    // Parent process loop for zombie handling
-    while (counter < 4) {
-        printf("Parent proceeding...\n");
-        printf("Counter: %d\n", counter);   // Debugging message
-        sleep(2);
-    }
-
-    printf("Parent process exiting.\n");
-    return 0;
-}
-
-
-
-
------------------------------
-
-
-
-
-
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -149,9 +12,16 @@ int main(int argc, char *argv[]) {
 #define FIFO1 "/tmp/fifo1"
 #define FIFO2 "/tmp/fifo2"
 #define DAEMON_FIFO "/tmp/daemon_fifo"
-#define TIMEOUT 10 // Timeout süresi (saniye)
 
 int counter = 0;
+
+// Timeout mechanism: set up the timeout handler for SIGALRM (per child)
+void timeout_handler(int signum) {
+    printf("Timeout reached, forcefully terminating child process.\n");
+    pid_t pid = getpid();
+    printf("Terminating process %d\n", pid);
+    kill(pid, SIGKILL);
+}
 
 void sigchld_handler(int signum) {
     printf("SIGCHLD received!\n");
@@ -172,10 +42,6 @@ void sigchld_handler(int signum) {
     }
 }
 
-void timeout_handler(int signum) {
-    printf("Timeout occurred, terminating the process.\n");
-    exit(EXIT_FAILURE);
-}
 
 void daemon_process() {
     // Redirect stdout and stderr to log files
@@ -205,6 +71,7 @@ void daemon_process() {
         fprintf(log_file, "[%ld] Daemon logged: Received numbers %d and %d\n", time(NULL), num1, num2);
     }
 
+
     time_t end_time = time(NULL);
     fprintf(log_file, "[%ld] Daemon exiting. PID: %d\n", end_time, getpid());
 
@@ -212,6 +79,9 @@ void daemon_process() {
     close(daemon_fd);
     exit(EXIT_SUCCESS);
 }
+
+
+
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -221,6 +91,10 @@ int main(int argc, char *argv[]) {
 
     int num1 = atoi(argv[1]);
     int num2 = atoi(argv[2]);
+
+
+
+
 
     // FIFO1 oluştur
     if (mkfifo(FIFO1, 0666) == -1 && errno != EEXIST) {
@@ -247,7 +121,13 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    printf("Parent started with PID: %d\n", getpid());
+
+
+    printf("Parent started with PID: %d\n", getpid()); //E'UIHOIŞE'jceınjkrvb
+
+
+
+
 
     // Create signal handler for SIGCHLD
     struct sigaction sa;
@@ -256,12 +136,13 @@ int main(int argc, char *argv[]) {
     sa.sa_flags = SA_RESTART;
     sigaction(SIGCHLD, &sa, NULL);
 
-    // Set timeout handler
-    signal(SIGALRM, timeout_handler);
 
-    // Daemon process oluştur
-    pid_t daemon_pid = fork();
-    if (daemon_pid == 0) {
+    
+    signal(SIGALRM, timeout_handler);  // Set timeout handler for childs
+
+     // Daemon process oluştur
+     pid_t daemon_pid = fork();
+     if (daemon_pid == 0) {
         // Yeni oturum başlat
         if (setsid() == -1) {
             perror("setsid failed");
@@ -282,7 +163,8 @@ int main(int argc, char *argv[]) {
         daemon_process();
     }
     
-    // Parent -> Daemon'a veri gönder
+    // sleep(2);
+     // Parent -> Daemon'a veri gönder
     int daemon_fd = open(DAEMON_FIFO, O_WRONLY);
     if (daemon_fd != -1) {
         write(daemon_fd, &num1, sizeof(int));
@@ -290,9 +172,13 @@ int main(int argc, char *argv[]) {
         close(daemon_fd);
     }
 
+
+
+
     // Fork first child process
     pid_t child1 = fork();
     if (child1 == 0) {
+        alarm(15);  // Set a 10-second timeout for this child
         printf("Child 1 started with PID: %d\n", getpid());
 
         // First child process (compares and writes the larger number to FIFO2)
@@ -311,7 +197,7 @@ int main(int argc, char *argv[]) {
 
         int larger = (received_num1 > received_num2) ? received_num1 : received_num2;
 
-        // **Child 1, FIFO2'ye yazmadan önce biraz bekleyelim**
+           // **Child 1, FIFO2'ye yazmadan önce biraz bekleyelim**
         sleep(2);
         // Write the larger number to FIFO2
         int fifo2_fd = open(FIFO2, O_WRONLY);
@@ -322,18 +208,23 @@ int main(int argc, char *argv[]) {
         write(fifo2_fd, &larger, sizeof(int));
         close(fifo2_fd);
 
-        printf("Child 1: Wrote larger number %d to FIFO2\n", larger);
+        printf("Child 1: Wrote larger number %d to FIFO2\n", larger);   //kee2ıofşo2jofciwv
 
         for (int i = 0; i < 5; i++) {
             printf("Child 1 running... (Iteration %d)\n", i);
             sleep(1);
         }
 
+        // Log the comparison result
         printf("Child 1 exiting...\n");
         sleep(10);
         exit(EXIT_SUCCESS);
     }
 
+
+
+
+    
     // **2. Parent -> FIFO1'e yazmadan önce Child 1'in başlamasını bekle**
     sleep(2);
      // First, Parent -> "FIFO1"  'e veri gönderme
@@ -348,10 +239,18 @@ int main(int argc, char *argv[]) {
     close(fifo1_fd);
     printf("Parent: Sent numbers %d and %d to FIFO1\n", num1, num2);
 
+
+
+
+
+
+
+
     // Fork second child process
     pid_t child2 = fork();
     if (child2 == 0) {
-        printf("Child 2 started with PID: %d\n", getpid());
+        alarm(15);  // Set a 10-second timeout for this child
+        printf("Child 2 started with PID: %d\n", getpid()); //CEuıhuoşf2eqjkvbjeqnnvıeqnvjknrşwjvnşwlk
 
         // Second child process (reads larger number from FIFO2)
         int fd = open(FIFO2, O_RDONLY);
@@ -368,16 +267,17 @@ int main(int argc, char *argv[]) {
             printf("Child 2 running... (Iteration %d)\n", i);
             sleep(1);
         }
-
-        printf("Child 2 exiting...\n");
+        
+        printf("Child 2 exiting...\n"); //e2uıfhşoıejı2fıoejpği
         sleep(10);
         exit(EXIT_SUCCESS);
     }
 
+
     // Parent process loop
     while (counter < 4) {
         printf("Parent proceeding...\n");
-        printf("Counter: %d\n", counter);  
+        printf("Counter: %d\n", counter);   // deneme için eklendi
         sleep(2);
     }
 
