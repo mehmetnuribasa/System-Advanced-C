@@ -1,0 +1,7 @@
+To run: gcc ab.c -o parent
+        ./parent 10 30
+
+
+To display content of fifo and daemon files:
+    cat /tmp/daemon_output.log
+    cat /tmp/fifo1

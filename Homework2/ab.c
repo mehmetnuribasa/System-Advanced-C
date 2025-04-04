@@ -13,15 +13,10 @@
 #define FIFO2 "/tmp/fifo2"
 #define DAEMON_FIFO "/tmp/daemon_fifo"
 
+volatile sig_atomic_t terminate_daemon = 0;
 int counter = 0;
 
-// Timeout mechanism: set up the timeout handler for SIGALRM (per child)
-void timeout_handler(int signum) {
-    printf("Timeout reached, forcefully terminating child process.\n");
-    pid_t pid = getpid();
-    printf("Terminating process %d\n", pid);
-    kill(pid, SIGKILL);
-}
+
 
 void sigchld_handler(int signum) {
     printf("SIGCHLD received!\n");
@@ -42,13 +37,36 @@ void sigchld_handler(int signum) {
     }
 }
 
+void handle_signal(int sig) {
+    FILE *log_file = fopen("daemon_log.txt", "a");
+    if (!log_file) return;
+
+    time_t now = time(NULL);
+    if (sig == SIGTERM) {
+        fprintf(log_file, "[%ld] Daemon received SIGTERM, terminating...\n", now);
+        terminate_daemon = 1;
+    } else if (sig == SIGHUP) {
+        fprintf(log_file, "[%ld] Daemon received SIGHUP, reloading...\n", now);
+    } else if (sig == SIGUSR1) {
+        fprintf(log_file, "[%ld] Daemon received SIGUSR1\n", now);
+    }
+    fclose(log_file);
+}
+
 
 void daemon_process() {
     // Redirect stdout and stderr to log files
-    freopen("/tmp/daemon_output.log", "a", stdout);
-    freopen("/tmp/daemon_error.log", "a", stderr);
+    freopen("daemon_output.log", "a", stdout);
+    freopen("daemon_error.log", "a", stderr);
 
-    FILE *log_file = fopen("/tmp/daemon_log.txt", "a");  // Log dosyası (append mode)
+    // Signal handlers
+    signal(SIGTERM, handle_signal);
+    signal(SIGHUP, handle_signal);
+    signal(SIGUSR1, handle_signal);
+
+
+
+    FILE *log_file = fopen("daemon_log.txt", "a");  // Log dosyası (append mode)
     if (!log_file) {
         perror("Daemon: Failed to open log file");
         exit(EXIT_FAILURE);
@@ -56,30 +74,41 @@ void daemon_process() {
 
     time_t start_time = time(NULL);
     fprintf(log_file, "[%ld] Daemon started with PID: %d\n", start_time, getpid());
+    fclose(log_file);
+
+
 
     int daemon_fd = open(DAEMON_FIFO, O_RDONLY);
     if (daemon_fd == -1) {
-        fprintf(log_file, "[%ld] Daemon: Error opening FIFO\n", time(NULL));
-        perror("open"); // stderr loga yönlendirildi
-        fclose(log_file);
+        perror("Daemon: Error opening FIFO");
         exit(EXIT_FAILURE);
     }
 
     int num1, num2;
-    while (read(daemon_fd, &num1, sizeof(int)) > 0 &&
-           read(daemon_fd, &num2, sizeof(int)) > 0) {
-        fprintf(log_file, "[%ld] Daemon logged: Received numbers %d and %d\n", time(NULL), num1, num2);
+    while (read(daemon_fd, &num1, sizeof(int)) > 0 && read(daemon_fd, &num2, sizeof(int)) > 0) {
+        
+        if(!terminate_daemon) {     //UI'hejfiğeq BURAYA BAKILACAK
+            log_file = fopen("daemon_log.txt", "a");
+            if (log_file) {
+                fprintf(log_file, "[%ld] Daemon logged: Received numbers %d and %d\n", time(NULL), num1, num2);
+                fclose(log_file);
+            }
+        }
+        
+        sleep(1);  // Daemon fazla CPU harcamasın
     }
 
 
-    time_t end_time = time(NULL);
-    fprintf(log_file, "[%ld] Daemon exiting. PID: %d\n", end_time, getpid());
-
-    fclose(log_file);
+    log_file = fopen("daemon_log.txt", "a");
+    if (log_file) {
+        fprintf(log_file, "[%ld] Daemon exiting. PID: %d\n", time(NULL), getpid());
+        fflush(log_file);
+        fclose(log_file);
+    }
+    
     close(daemon_fd);
     exit(EXIT_SUCCESS);
 }
-
 
 
 
@@ -138,7 +167,6 @@ int main(int argc, char *argv[]) {
 
 
     
-    signal(SIGALRM, timeout_handler);  // Set timeout handler for childs
 
      // Daemon process oluştur
      pid_t daemon_pid = fork();
@@ -149,10 +177,10 @@ int main(int argc, char *argv[]) {
             exit(EXIT_FAILURE);
         }
         
-        if (chdir("/") == -1) {
-            perror("chdir failed");
-            exit(EXIT_FAILURE);
-        }
+        // if (chdir("/") == -1) {
+        //     perror("chdir failed");
+        //     exit(EXIT_FAILURE);
+        // }
     
         umask(0);
     
@@ -178,7 +206,6 @@ int main(int argc, char *argv[]) {
     // Fork first child process
     pid_t child1 = fork();
     if (child1 == 0) {
-        alarm(15);  // Set a 10-second timeout for this child
         printf("Child 1 started with PID: %d\n", getpid());
 
         // First child process (compares and writes the larger number to FIFO2)
@@ -249,7 +276,6 @@ int main(int argc, char *argv[]) {
     // Fork second child process
     pid_t child2 = fork();
     if (child2 == 0) {
-        alarm(15);  // Set a 10-second timeout for this child
         printf("Child 2 started with PID: %d\n", getpid()); //CEuıhuoşf2eqjkvbjeqnnvıeqnvjknrşwjvnşwlk
 
         // Second child process (reads larger number from FIFO2)
