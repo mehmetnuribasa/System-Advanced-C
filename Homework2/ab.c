@@ -9,13 +9,21 @@
 #include <errno.h>
 #include <time.h>
 
-#define FIFO1 "/tmp/fifo1"
+#define FIFO1 "/tmp/fifo1"  //NEREYE oluştrulrmalı tmp or not
 #define FIFO2 "/tmp/fifo2"
 #define DAEMON_FIFO "/tmp/daemon_fifo"
+#define TIMEOUT_SECONDS 10
+
+typedef struct {
+    volatile pid_t pid;
+    volatile time_t last_active;
+} child_info;
+
+volatile child_info children[2];  // 0: child1, 1: child2
 
 volatile sig_atomic_t terminate_daemon = 0;
 int counter = 0;
-
+volatile pid_t parent_pid;
 
 
 void sigchld_handler(int signum) {
@@ -77,17 +85,22 @@ void daemon_process() {
     fclose(log_file);
 
 
-
-    int daemon_fd = open(DAEMON_FIFO, O_RDONLY);
+    
+    int daemon_fd = open(DAEMON_FIFO, O_RDONLY | O_NONBLOCK);
+    // int daemon_fd = open(DAEMON_FIFO, O_RDONLY);    //NONBLOCKİNG...
     if (daemon_fd == -1) {
         perror("Daemon: Error opening FIFO");
         exit(EXIT_FAILURE);
     }
 
     int num1, num2;
-    while (read(daemon_fd, &num1, sizeof(int)) > 0 && read(daemon_fd, &num2, sizeof(int)) > 0) {
-        
-        if(!terminate_daemon) {     //UI'hejfiğeq BURAYA BAKILACAK
+    while (!terminate_daemon) {
+
+        if(getppid() != parent_pid) {
+            break;
+        }
+
+        if(read(daemon_fd, &num1, sizeof(int)) > 0 && read(daemon_fd, &num2, sizeof(int)) > 0) {
             log_file = fopen("daemon_log.txt", "a");
             if (log_file) {
                 fprintf(log_file, "[%ld] Daemon logged: Received numbers %d and %d\n", time(NULL), num1, num2);
@@ -95,6 +108,33 @@ void daemon_process() {
             }
         }
         
+
+        // Timeout kontrolü
+        time_t now = time(NULL);
+        for (int i = 0; i < 2; i++) {
+
+            //BURAYA KABILACAK STRUCTAN DEĞER 0 GELİYOR
+            // log_file = fopen("daemon_log.txt", "a");
+            // fprintf(log_file, "huhuu %d\n", children[i].pid);
+            // fclose(log_file);
+
+            if (children[i].pid > 0) {
+                double diff = difftime(now, children[i].last_active);
+
+                
+
+                if (diff >= TIMEOUT_SECONDS) {
+                    log_file = fopen("daemon_log.txt", "a");
+                    if (log_file) {
+                        fprintf(log_file, "[%ld] Child %d exceeded timeout. Sending SIGTERM.\n", now, children[i].pid);
+                        fclose(log_file);
+                    }
+                    kill(children[i].pid, SIGTERM);
+                    children[i].pid = -1;  // bu çocuğu artık izleme
+                }
+            }
+        }
+
         sleep(1);  // Daemon fazla CPU harcamasın
     }
 
@@ -122,9 +162,6 @@ int main(int argc, char *argv[]) {
     int num2 = atoi(argv[2]);
 
 
-
-
-
     // FIFO1 oluştur
     if (mkfifo(FIFO1, 0666) == -1 && errno != EEXIST) {
         perror("FIFO1 oluşturulamadı");
@@ -142,20 +179,9 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    printf("FIFO'lar başarıyla oluşturuldu.\n");
-
-    // FIFO'yu açmaya çalışmadan önce FIFO'nun doğru şekilde oluşturulduğundan emin olalım.
-    if (access(FIFO1, F_OK) != 0) {
-        perror("FIFO1 mevcut değil");
-        exit(EXIT_FAILURE);
-    }
-
-
 
     printf("Parent started with PID: %d\n", getpid()); //E'UIHOIŞE'jceınjkrvb
-
-
-
+    parent_pid = getpid();
 
 
     // Create signal handler for SIGCHLD
@@ -166,24 +192,16 @@ int main(int argc, char *argv[]) {
     sigaction(SIGCHLD, &sa, NULL);
 
 
-    
-
-     // Daemon process oluştur
-     pid_t daemon_pid = fork();
-     if (daemon_pid == 0) {
+    // Create Daemon process
+    pid_t daemon_pid = fork();
+    if (daemon_pid == 0) {
         // Yeni oturum başlat
         if (setsid() == -1) {
             perror("setsid failed");
             exit(EXIT_FAILURE);
         }
-        
-        // if (chdir("/") == -1) {
-        //     perror("chdir failed");
-        //     exit(EXIT_FAILURE);
-        // }
-    
         umask(0);
-    
+
         close(STDIN_FILENO);
         close(STDOUT_FILENO);
         close(STDERR_FILENO);
@@ -192,7 +210,7 @@ int main(int argc, char *argv[]) {
     }
     
     // sleep(2);
-     // Parent -> Daemon'a veri gönder
+    // Send the numbers from Parent to Daemon
     int daemon_fd = open(DAEMON_FIFO, O_WRONLY);
     if (daemon_fd != -1) {
         write(daemon_fd, &num1, sizeof(int));
@@ -201,12 +219,16 @@ int main(int argc, char *argv[]) {
     }
 
 
-
-
     // Fork first child process
     pid_t child1 = fork();
     if (child1 == 0) {
+        
+        children[0].pid = getpid();
+        children[0].last_active = time(NULL);
+
         printf("Child 1 started with PID: %d\n", getpid());
+        
+        // printf("Child 1 started with PID: %d\n", children[0].pid);
 
         // First child process (compares and writes the larger number to FIFO2)
         int fd = open(FIFO1, O_RDONLY);
@@ -224,8 +246,9 @@ int main(int argc, char *argv[]) {
 
         int larger = (received_num1 > received_num2) ? received_num1 : received_num2;
 
-           // **Child 1, FIFO2'ye yazmadan önce biraz bekleyelim**
-        sleep(2);
+        // **Child 1, FIFO2'ye yazmadan önce biraz bekleyelim**
+        // sleep(2);
+
         // Write the larger number to FIFO2
         int fifo2_fd = open(FIFO2, O_WRONLY);
         if (fifo2_fd == -1) {
@@ -236,11 +259,6 @@ int main(int argc, char *argv[]) {
         close(fifo2_fd);
 
         printf("Child 1: Wrote larger number %d to FIFO2\n", larger);   //kee2ıofşo2jofciwv
-
-        for (int i = 0; i < 5; i++) {
-            printf("Child 1 running... (Iteration %d)\n", i);
-            sleep(1);
-        }
 
         // Log the comparison result
         printf("Child 1 exiting...\n");
@@ -276,6 +294,10 @@ int main(int argc, char *argv[]) {
     // Fork second child process
     pid_t child2 = fork();
     if (child2 == 0) {
+        
+        children[1].pid = getpid();
+        children[1].last_active = time(NULL);
+
         printf("Child 2 started with PID: %d\n", getpid()); //CEuıhuoşf2eqjkvbjeqnnvıeqnvjknrşwjvnşwlk
 
         // Second child process (reads larger number from FIFO2)
@@ -293,9 +315,10 @@ int main(int argc, char *argv[]) {
             printf("Child 2 running... (Iteration %d)\n", i);
             sleep(1);
         }
-        
-        printf("Child 2 exiting...\n"); //e2uıfhşoıejı2fıoejpği
+
         sleep(10);
+        printf("Child 2 exiting...\n"); //e2uıfhşoıejı2fıoejpği
+        
         exit(EXIT_SUCCESS);
     }
 
@@ -306,6 +329,10 @@ int main(int argc, char *argv[]) {
         printf("Counter: %d\n", counter);   // deneme için eklendi
         sleep(2);
     }
+
+    unlink(FIFO1);
+    unlink(FIFO2);
+    unlink(DAEMON_FIFO);
 
     printf("Parent process exiting.\n");
     return 0;

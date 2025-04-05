@@ -12,3 +12,578 @@
 [1743808046] Daemon logged: Received numbers 10 and 50
 [1743808046] Daemon started with PID: 3139
 [1743808047] Daemon exiting. PID: 3135
+[1743865833] Daemon started with PID: 213
+[1743865833] Daemon logged: Received numbers 10 and 50
+[1743865834] Daemon exiting. PID: 213
+[1743866166] Daemon started with PID: 284
+[1743866166] Daemon logged: Received numbers 10 and 11
+[1743866167] Daemon exiting. PID: 284
+[1743866222] Daemon started with PID: 296
+[1743866222] Daemon logged: Received numbers 10 and 12
+[1743866223] Daemon exiting. PID: 296
+[1743866254] Daemon started with PID: 305
+[1743866254] Daemon logged: Received numbers 10 and 13
+[1743866255] Daemon exiting. PID: 305
+[1743866366] Daemon started with PID: 374
+[1743866366] Daemon logged: Received numbers 10 and 80
+[1743866367] Daemon exiting. PID: 374
+[1743866397] Daemon started with PID: 403
+[1743866397] Daemon logged: Received numbers 10 and 80
+[1743866406] Daemon received SIGTERM, terminating...
+[1743866406] Daemon exiting. PID: 403
+[1743869095] Daemon started with PID: 454
+[1743869095] Daemon logged: Received numbers 10 and 80
+[1743869434] Daemon started with PID: 474
+[1743869435] Daemon logged: Received numbers 10 and 80
+[1743869871] Daemon started with PID: 498
+[1743869871] Daemon logged: Received numbers 10 and 90
+[1743870788] Daemon started with PID: 540
+[1743870789] Daemon logged: Received numbers 10 and 100
+[1743870907] Daemon started with PID: 549
+[1743870908] Daemon logged: Received numbers 10 and 100
+[1743870963] Daemon started with PID: 558
+[1743870964] Daemon logged: Received numbers 10 and 100
+[1743871742] Daemon started with PID: 595
+[1743871743] Daemon logged: Received numbers 10 and 100
+[1743871748] Daemon started with PID: 604
+[1743871748] Daemon logged: Received numbers 10 and 100
+[1743872417] Daemon started with PID: 625
+[1743872418] Daemon logged: Received numbers 10 and 100
+[1743872604] Daemon started with PID: 645
+[1743872605] Daemon logged: Received numbers 10 and 100
+[1743872657] Daemon started with PID: 679
+[1743872658] Daemon logged: Received numbers 10 and 101
+[1743872830] Daemon received SIGTERM, terminating...
+[1743872830] Daemon exiting. PID: 679
+[1743872840] Daemon received SIGTERM, terminating...
+[1743872840] Daemon exiting. PID: 645
+[1743872853] Daemon received SIGTERM, terminating...
+[1743873055] Daemon started with PID: 721
+[1743873056] Daemon logged: Received numbers 10 and 101
+[1743873238] Daemon started with PID: 744
+[1743873239] Daemon logged: Received numbers 10 and 101
+[1743873257] Daemon exiting. PID: 744
+[1743873289] Daemon started with PID: 753
+[1743873290] Daemon logged: Received numbers 10 and 101
+[1743873308] Daemon exiting. PID: 138
+[1743873317] Daemon started with PID: 762
+[1743873318] Daemon logged: Received numbers 10 and 109
+[1743873336] Daemon exiting. PID: 138
+[1743873362] Daemon started with PID: 772
+[1743873363] Daemon logged: Received numbers 10 and 109
+[1743873381] Daemon exiting. PID: 772
+[1743873841] Daemon started with PID: 821
+[1743873842] Daemon logged: Received numbers 10 and 820
+[1743873860] Daemon exiting. PID: 138
+[1743874011] Daemon started with PID: 843
+[1743874012] Daemon logged: Received numbers 10 and 110
+[1743874030] Daemon exiting. PID: 843
+[1743874070] Daemon started with PID: 852
+[1743874071] Daemon logged: Received numbers 10 and 110
+[1743874099] Daemon exiting. PID: 852
+[1743874300] Daemon started with PID: 862
+[1743874301] Daemon logged: Received numbers 10 and 110
+[1743874329] Daemon exiting. PID: 862
+[1743874462] Daemon started with PID: 871
+[1743874463] Daemon logged: Received numbers 10 and 110
+[1743874491] Daemon exiting. PID: 871
+[1743875031] Daemon started with PID: 880
+[1743875032] Daemon logged: Received numbers 10 and 110
+[1743875060] Daemon exiting. PID: 880
+[1743875176] Daemon started with PID: 889
+[1743875177] Daemon logged: Received numbers 10 and 110
+[1743875205] Daemon exiting. PID: 889
+[1743875383] Daemon started with PID: 898
+[1743875384] Daemon logged: Received numbers 10 and 110
+[1743875412] Daemon exiting. PID: 898
+[1743875527] Daemon started with PID: 907
+[1743875528] Daemon logged: Received numbers 10 and 110
+[1743875556] Daemon exiting. PID: 907
+[1743875606] Daemon started with PID: 916
+[1743875607] Daemon logged: Received numbers 10 and 110
+[1743875635] Daemon exiting. PID: 916
+[1743875707] Daemon started with PID: 925
+huhuuuuuuuuuuuuuu
+[1743875708] Daemon logged: Received numbers 10 and 110
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+huhuuuuuuuuuuuuuu
+[1743875736] Daemon exiting. PID: 925
+[1743875779] Daemon started with PID: 934
+huhuu 0huhuu 0[1743875780] Daemon logged: Received numbers 10 and 110
+huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0[1743875958] Daemon started with PID: 943
+[1743875958] Daemon logged: Received numbers 10 and 110
+huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0[1743875978] Daemon started with PID: 952
+[1743875978] Daemon logged: Received numbers 10 and 110
+huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0[1743876079] Daemon started with PID: 961
+[1743876079] Daemon logged: Received numbers 10 and 119
+huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0[1743876108] Daemon exiting. PID: 961
+huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0huhuu 0[1743876129] Daemon received SIGTERM, terminating...
+[1743876129] Daemon exiting. PID: 934
+[1743876158] Daemon started with PID: 996
+[1743876159] Daemon logged: Received numbers 10 and 119
+[1743876187] Daemon exiting. PID: 996
+[1743876254] Daemon started with PID: 1017
+[1743876255] Daemon logged: Received numbers 10 and 119
+[1743876283] Daemon exiting. PID: 1017
+[1743876345] Daemon started with PID: 1026
+huhuu 0
+huhuu 0
+[1743876346] Daemon logged: Received numbers 10 and 119
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+[1743876374] Daemon exiting. PID: 1026
+[1743876393] Daemon started with PID: 1047
+huhuu 0
+huhuu 0
+[1743876394] Daemon logged: Received numbers 10 and 119
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+[1743876422] Daemon exiting. PID: 1047
+[1743876716] Daemon started with PID: 1070
+huhuu 0
+huhuu 0
+[1743876717] Daemon logged: Received numbers 10 and 119
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+[1743876745] Daemon exiting. PID: 1070
+[1743876963] Daemon started with PID: 1092
+huhuu 0
+huhuu 0
+[1743876964] Daemon logged: Received numbers 10 and 119
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+[1743876992] Daemon exiting. PID: 1092
+[1743877003] Daemon started with PID: 1101
+huhuu 0
+huhuu 0
+[1743877004] Daemon logged: Received numbers 10 and 119
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+[1743877033] Daemon exiting. PID: 1101
+[1743877037] Daemon started with PID: 1113
+huhuu 0
+huhuu 0
+[1743877038] Daemon logged: Received numbers 10 and 119
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+[1743877066] Daemon exiting. PID: 1113
+[1743877220] Daemon started with PID: 1123
+huhuu 0
+huhuu 0
+[1743877221] Daemon logged: Received numbers 10 and 119
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+huhuu 0
+[1743877249] Daemon exiting. PID: 1123
+[1743877320] Daemon started with PID: 1132
+[1743877321] Daemon logged: Received numbers 10 and 119
+[1743877339] Daemon exiting. PID: 1132
+[1743883519] Daemon started with PID: 1301
+[1743883520] Daemon logged: Received numbers 10 and 119
+[1743883538] Daemon exiting. PID: 1301
+[1743883821] Daemon started with PID: 1333
+[1743883822] Daemon logged: Received numbers 10 and 119
+[1743883838] Daemon exiting. PID: 1333
