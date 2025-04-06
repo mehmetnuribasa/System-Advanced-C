@@ -9,30 +9,18 @@
 #include <errno.h>
 #include <time.h>
 #include <string.h>
+#include <poll.h>
 
 #define FIFO1 "/tmp/fifo1"  
 #define FIFO2 "/tmp/fifo2"
 #define DAEMON_FIFO "/tmp/daemon_fifo"
 #define STATUS_FIFO "/tmp/status_fifo"
 
-#define TIMEOUT_SECONDS 10
+int counter = 0;  // Counter for parent process
+int signal_pipe[2];  // Pipe for signal handling [0: read end, 1: write end]
 
-typedef struct {
-    volatile pid_t pid;
-    volatile time_t last_active;
-} child_info;
-
-volatile child_info children[2];  // 0: child1, 1: child2
-
-volatile sig_atomic_t terminate_daemon = 0;
-int counter = 0;
-volatile pid_t parent_pid;
-
-
+// Signal handler for SIGCHLD
 void sigchld_handler(int signum) {
-    
-
-    printf("SIGCHLD received!\n");  //JBLCejşwvjwilrjbmlkem
     int status;
     pid_t pid;
     while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
@@ -44,7 +32,7 @@ void sigchld_handler(int signum) {
             return;
         }
         dprintf(fd, "%d %d\n", pid, WEXITSTATUS(status));
-        close(fd); // Close STATUS_FIFO after writing
+        close(fd);
 
         // Zombie protection
         if (WIFEXITED(status)) {
@@ -63,23 +51,23 @@ void sigchld_handler(int signum) {
 
 //BU KSIIMD DAEMON KENDİNİ KAPATIYOR; ACABA TÜM PROGRMI MI KAPATACAK
 void handle_signal(int sig) {
-    FILE *log_file = fopen("daemon_log.txt", "a");
-    if (!log_file) return;
-
-    time_t now = time(NULL);
+    char signal_char;
     if (sig == SIGTERM) {
-        fprintf(log_file, "[%ld] Daemon received SIGTERM, terminating...\n", now);
-        terminate_daemon = 1;
+        signal_char = 'T';  // SIGTERM
     } else if (sig == SIGHUP) {
-        fprintf(log_file, "[%ld] Daemon received SIGHUP, reloading...\n", now);
+        signal_char = 'H';  // SIGHUP
     } else if (sig == SIGUSR1) {
-        fprintf(log_file, "[%ld] Daemon received SIGUSR1\n", now);
+        signal_char = 'U';  // SIGUSR1
+    } else {
+        return;
     }
-    fclose(log_file);
+
+    // Write the signal to the pipe
+    write(signal_pipe[1], &signal_char, 1);
 }
 
-
-void daemon_process() {
+ 
+void daemon_process(pid_t parent_pid) {
     // Redirect stdout and stderr to log files
     freopen("daemon_output.log", "a", stdout);
     freopen("daemon_error.log", "a", stderr);
@@ -116,17 +104,50 @@ void daemon_process() {
         exit(EXIT_FAILURE);
     }
 
+    struct pollfd pfd;
+    pfd.fd = signal_pipe[0];  // Monitor the read end of the pipe
+    pfd.events = POLLIN;      // Check for data to read
+
     int num1, num2;
     char buf[128];
-    while (!terminate_daemon) {
+    char signal_char;
 
+    while (1) {
         // Check if the parent process is still alive
-        if(getppid() != parent_pid) {
+        if (getppid() != parent_pid) {
+            log_file = fopen("daemon_log.txt", "a");
+            if (log_file) {
+                fprintf(log_file, "[%ld] Daemon: Parent process terminated. Exiting...\n", time(NULL));
+                fclose(log_file);
+            }
             break;
         }
 
-        //reading numbers are writen to the log file
-        if(read(daemon_fd, &num1, sizeof(int)) > 0 && read(daemon_fd, &num2, sizeof(int)) > 0) {
+        // Use poll() to wait for signals with a timeout
+        int poll_result = poll(&pfd, 1, 1000);  // 1-second timeout
+        if (poll_result == -1) {
+            perror("Daemon: poll() failed");
+            break;
+        }
+
+        // Check if there is data to read from the pipe
+        if (poll_result > 0 && (pfd.revents & POLLIN)) {
+            if (read(signal_pipe[0], &signal_char, 1) > 0) {
+                if (signal_char == 'T') {
+                    fprintf(stderr, "[%ld] Daemon: Received SIGTERM. Exiting...\n", time(NULL));
+                    break;
+                } else if (signal_char == 'H') {
+                    fprintf(stderr, "[%ld] Daemon: Received SIGHUP. Reloading configuration...\n", time(NULL));
+                } else if (signal_char == 'U') {
+                    fprintf(stderr, "[%ld] Daemon: Received SIGUSR1. Performing custom action...\n", time(NULL));
+                }
+            }
+        }
+
+        
+        // Continue processing main tasks even if no signal is received
+        // Reading numbers from DAEMON_FIFO
+        if (read(daemon_fd, &num1, sizeof(int)) > 0 && read(daemon_fd, &num2, sizeof(int)) > 0) {
             log_file = fopen("daemon_log.txt", "a");
             if (log_file) {
                 fprintf(log_file, "[%ld] Daemon logged: Received numbers %d and %d\n", time(NULL), num1, num2);
@@ -135,7 +156,6 @@ void daemon_process() {
         }
 
         ssize_t n;
-        //ADDED
         // Read log messages from DAEMON_FIFO and write to daemon_log.txt
         while ((n = read(daemon_fd, buf, sizeof(buf) - 1)) > 0) {
             buf[n] = '\0';
@@ -145,10 +165,9 @@ void daemon_process() {
                 fclose(log_file);
             }
         }
-        
 
-        //exit status are logged to the log file.
-        while ((n = read(status_fd, buf, sizeof(buf) - 1)) > 0) {  // Read all available data
+        // Exit statuses are logged to the log file
+        while ((n = read(status_fd, buf, sizeof(buf) - 1)) > 0) {
             buf[n] = '\0';
             char *line = strtok(buf, "\n");
             while (line != NULL) {
@@ -166,11 +185,8 @@ void daemon_process() {
             }
         }
 
-        
-
-        sleep(1);  // Daemon fazla CPU harcamasın
+        sleep(1);  // Prevent excessive CPU usage
     }
-
 
     log_file = fopen("daemon_log.txt", "a");
     if (log_file) {
@@ -178,7 +194,7 @@ void daemon_process() {
         fflush(log_file);
         fclose(log_file);
     }
-    
+
     close(daemon_fd);
     close(status_fd);
     exit(EXIT_SUCCESS);
@@ -196,31 +212,37 @@ int main(int argc, char *argv[]) {
     int num2 = atoi(argv[2]);
 
 
-    // FIFO1 oluştur
+    // create FIFO1
     if (mkfifo(FIFO1, 0666) == -1 && errno != EEXIST) {
         perror("FIFO1 can not be created");
         exit(EXIT_FAILURE);
     }
 
-    // FIFO2 oluştur
+    // create FIFO2
     if (mkfifo(FIFO2, 0666) == -1 && errno != EEXIST) {
         perror("FIFO2 can not be created");
         exit(EXIT_FAILURE);
     }
-
+    // create DAEMON_FIFO
     if (mkfifo(DAEMON_FIFO, 0666) == -1 && errno != EEXIST) {
         perror("DAEMON FIFO can not be created");
         exit(EXIT_FAILURE);
     }
-
+    // create STATUS_FIFO
     if (mkfifo(STATUS_FIFO, 0666) == -1 && errno != EEXIST) {
         perror("STATUS FIFO can not be created");
         exit(EXIT_FAILURE);
     }
 
+    // Create the signal pipe
+    if (pipe(signal_pipe) == -1) {
+        perror("Failed to create signal pipe");
+        exit(EXIT_FAILURE);
+    }
 
-    printf("Parent started with PID: %d\n", getpid()); //E'UIHOIŞE'jceınjkrvb
-    parent_pid = getpid();
+
+    printf("Parent started with PID: %d\n", getpid());
+    pid_t parent_pid = getpid();
 
 
     // Create signal handler for SIGCHLD
@@ -245,7 +267,7 @@ int main(int argc, char *argv[]) {
         close(STDOUT_FILENO);
         close(STDERR_FILENO);
         
-        daemon_process();
+        daemon_process(parent_pid);
     }
     
     // sleep(2);
@@ -262,10 +284,8 @@ int main(int argc, char *argv[]) {
     pid_t child1 = fork();
     if (child1 == 0) {
         sleep(10);
-        children[0].pid = getpid();
-        children[0].last_active = time(NULL);
-
         printf("Child 1 started with PID: %d\n", getpid());
+        
         //ADDED
         // Log the message to daemon_log.txt
         int log_fd = open(DAEMON_FIFO, O_WRONLY | O_NONBLOCK);
@@ -299,8 +319,6 @@ int main(int argc, char *argv[]) {
         write(fifo2_fd, &larger, sizeof(int));
         close(fifo2_fd);
 
-        // Log the comparison result
-        printf("Child 1 exiting...\n");
         exit(EXIT_SUCCESS);
     }
 
@@ -322,11 +340,8 @@ int main(int argc, char *argv[]) {
     pid_t child2 = fork();
     if (child2 == 0) {
         sleep(10);
+        printf("Cild 2 startedwith PID: %d\n", getpid());
         
-        children[1].pid = getpid();
-        children[1].last_active = time(NULL);
-
-        printf("Child 2 started with PID: %d\n", getpid());
         //ADDED
         // Log the message to daemon_log.txt
         int log_fd = open(DAEMON_FIFO, O_WRONLY | O_NONBLOCK);
@@ -345,17 +360,15 @@ int main(int argc, char *argv[]) {
         }
         int larger;
         read(fd, &larger, sizeof(int));
-        printf("Larger number: %d\n", larger);
+        printf("***Larger number: %d***\n", larger);
         close(fd);
 
-        
-        printf("Child 2 exiting...\n"); //e2uıfhşoıejı2fıoejpği
         exit(EXIT_SUCCESS);
     }
 
 
     // Parent process loop
-    while (counter < 4 && !terminate_daemon) {
+    while (counter < 4) {
         printf("Parent proceeding...\n");
         sleep(2);
     }
