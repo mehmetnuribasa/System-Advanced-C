@@ -21,6 +21,7 @@ int signal_pipe[2];  // Pipe for signal handling [0: read end, 1: write end]
 
 // Signal handler for SIGCHLD
 void sigchld_handler(int signum) {
+    (void)signum; // Mark the parameter as unused
     int status;
     pid_t pid;
     while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
