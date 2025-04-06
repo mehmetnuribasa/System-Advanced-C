@@ -8,10 +8,13 @@
 #include <signal.h>
 #include <errno.h>
 #include <time.h>
+#include <string.h>
 
-#define FIFO1 "/tmp/fifo1"  //NEREYE oluştrulrmalı tmp or not
+#define FIFO1 "/tmp/fifo1"  
 #define FIFO2 "/tmp/fifo2"
 #define DAEMON_FIFO "/tmp/daemon_fifo"
+#define STATUS_FIFO "/tmp/status_fifo"
+
 #define TIMEOUT_SECONDS 10
 
 typedef struct {
@@ -27,10 +30,22 @@ volatile pid_t parent_pid;
 
 
 void sigchld_handler(int signum) {
-    printf("SIGCHLD received!\n");
+    
+
+    printf("SIGCHLD received!\n");  //JBLCejşwvjwilrjbmlkem
     int status;
     pid_t pid;
     while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
+
+        // Write exit statuses to the daemon via STATUS_FIFO
+        int fd = open(STATUS_FIFO, O_WRONLY | O_NONBLOCK);
+        if (fd == -1) {
+            perror("sigchld_handler: Failed to open STATUS_FIFO");
+            return;
+        }
+        dprintf(fd, "%d %d\n", pid, WEXITSTATUS(status));
+        close(fd); // Close STATUS_FIFO after writing
+
         // Zombie protection
         if (WIFEXITED(status)) {
             printf("Child process %d exited with status %d.\n", pid, WEXITSTATUS(status));
@@ -43,8 +58,10 @@ void sigchld_handler(int signum) {
         }
         counter += 2; // Increase counter by 2
     }
+    
 }
 
+//BU KSIIMD DAEMON KENDİNİ KAPATIYOR; ACABA TÜM PROGRMI MI KAPATACAK
 void handle_signal(int sig) {
     FILE *log_file = fopen("daemon_log.txt", "a");
     if (!log_file) return;
@@ -74,7 +91,7 @@ void daemon_process() {
 
 
 
-    FILE *log_file = fopen("daemon_log.txt", "a");  // Log dosyası (append mode)
+    FILE *log_file = fopen("daemon_log.txt", "a");  // Log file (append mode)
     if (!log_file) {
         perror("Daemon: Failed to open log file");
         exit(EXIT_FAILURE);
@@ -87,19 +104,28 @@ void daemon_process() {
 
     
     int daemon_fd = open(DAEMON_FIFO, O_RDONLY | O_NONBLOCK);
-    // int daemon_fd = open(DAEMON_FIFO, O_RDONLY);    //NONBLOCKİNG...
+    // int daemon_fd = open(DAEMON_FIFO, O_RDONLY);
     if (daemon_fd == -1) {
         perror("Daemon: Error opening FIFO");
         exit(EXIT_FAILURE);
     }
 
+    int status_fd = open(STATUS_FIFO, O_RDONLY);  // Use blocking mode
+    if (status_fd == -1) {
+        perror("Failed to open status FIFO");
+        exit(EXIT_FAILURE);
+    }
+
     int num1, num2;
+    char buf[128];
     while (!terminate_daemon) {
 
+        // Check if the parent process is still alive
         if(getppid() != parent_pid) {
             break;
         }
 
+        //reading numbers are writen to the log file
         if(read(daemon_fd, &num1, sizeof(int)) > 0 && read(daemon_fd, &num2, sizeof(int)) > 0) {
             log_file = fopen("daemon_log.txt", "a");
             if (log_file) {
@@ -107,33 +133,40 @@ void daemon_process() {
                 fclose(log_file);
             }
         }
-        
 
-        // Timeout kontrolü
-        time_t now = time(NULL);
-        for (int i = 0; i < 2; i++) {
-
-            //BURAYA KABILACAK STRUCTAN DEĞER 0 GELİYOR
-            // log_file = fopen("daemon_log.txt", "a");
-            // fprintf(log_file, "huhuu %d\n", children[i].pid);
-            // fclose(log_file);
-
-            if (children[i].pid > 0) {
-                double diff = difftime(now, children[i].last_active);
-
-                
-
-                if (diff >= TIMEOUT_SECONDS) {
-                    log_file = fopen("daemon_log.txt", "a");
-                    if (log_file) {
-                        fprintf(log_file, "[%ld] Child %d exceeded timeout. Sending SIGTERM.\n", now, children[i].pid);
-                        fclose(log_file);
-                    }
-                    kill(children[i].pid, SIGTERM);
-                    children[i].pid = -1;  // bu çocuğu artık izleme
-                }
+        ssize_t n;
+        //ADDED
+        // Read log messages from DAEMON_FIFO and write to daemon_log.txt
+        while ((n = read(daemon_fd, buf, sizeof(buf) - 1)) > 0) {
+            buf[n] = '\0';
+            log_file = fopen("daemon_log.txt", "a");
+            if (log_file) {
+                fprintf(log_file, "%s", buf);
+                fclose(log_file);
             }
         }
+        
+
+        //exit status are logged to the log file.
+        while ((n = read(status_fd, buf, sizeof(buf) - 1)) > 0) {  // Read all available data
+            buf[n] = '\0';
+            char *line = strtok(buf, "\n");
+            while (line != NULL) {
+                int pid, status;
+                if (sscanf(line, "%d %d", &pid, &status) == 2) {
+                    log_file = fopen("daemon_log.txt", "a");
+                    if (log_file) {
+                        fprintf(log_file, "[%ld] Child process %d exited with status %d\n", time(NULL), pid, status);
+                        fclose(log_file);
+                    }
+                } else {
+                    fprintf(stderr, "Daemon: Failed to parse status message: %s\n", line);
+                }
+                line = strtok(NULL, "\n");
+            }
+        }
+
+        
 
         sleep(1);  // Daemon fazla CPU harcamasın
     }
@@ -147,6 +180,7 @@ void daemon_process() {
     }
     
     close(daemon_fd);
+    close(status_fd);
     exit(EXIT_SUCCESS);
 }
 
@@ -164,18 +198,23 @@ int main(int argc, char *argv[]) {
 
     // FIFO1 oluştur
     if (mkfifo(FIFO1, 0666) == -1 && errno != EEXIST) {
-        perror("FIFO1 oluşturulamadı");
+        perror("FIFO1 can not be created");
         exit(EXIT_FAILURE);
     }
 
     // FIFO2 oluştur
     if (mkfifo(FIFO2, 0666) == -1 && errno != EEXIST) {
-        perror("FIFO2 oluşturulamadı");
+        perror("FIFO2 can not be created");
         exit(EXIT_FAILURE);
     }
 
     if (mkfifo(DAEMON_FIFO, 0666) == -1 && errno != EEXIST) {
-        perror("DAEMON oluşturulamadı");
+        perror("DAEMON FIFO can not be created");
+        exit(EXIT_FAILURE);
+    }
+
+    if (mkfifo(STATUS_FIFO, 0666) == -1 && errno != EEXIST) {
+        perror("STATUS FIFO can not be created");
         exit(EXIT_FAILURE);
     }
 
@@ -195,7 +234,7 @@ int main(int argc, char *argv[]) {
     // Create Daemon process
     pid_t daemon_pid = fork();
     if (daemon_pid == 0) {
-        // Yeni oturum başlat
+        // Create a new session and process group 
         if (setsid() == -1) {
             perror("setsid failed");
             exit(EXIT_FAILURE);
@@ -219,18 +258,25 @@ int main(int argc, char *argv[]) {
     }
 
 
-    // Fork first child process
+    // Fork first child process (compares and writes the larger number to FIFO2)
     pid_t child1 = fork();
     if (child1 == 0) {
-        
+        sleep(10);
         children[0].pid = getpid();
         children[0].last_active = time(NULL);
 
         printf("Child 1 started with PID: %d\n", getpid());
-        
-        // printf("Child 1 started with PID: %d\n", children[0].pid);
+        //ADDED
+        // Log the message to daemon_log.txt
+        int log_fd = open(DAEMON_FIFO, O_WRONLY | O_NONBLOCK);
+        if (log_fd != -1) {
+            char log_message[128];
+            snprintf(log_message, sizeof(log_message), "[%ld] Child 1 started with PID: %d\n", time(NULL), getpid());
+            write(log_fd, log_message, strlen(log_message));
+            close(log_fd);
+        }
 
-        // First child process (compares and writes the larger number to FIFO2)
+        // Read the  numbers from FIFO1
         int fd = open(FIFO1, O_RDONLY);
         if (fd == -1) {
             perror("Child 1: Error opening FIFO1");
@@ -242,12 +288,7 @@ int main(int argc, char *argv[]) {
         read(fd, &received_num2, sizeof(int));
         close(fd);
 
-        printf("Child1: num1: %d, num2: %d\n", received_num1, received_num2);
-
         int larger = (received_num1 > received_num2) ? received_num1 : received_num2;
-
-        // **Child 1, FIFO2'ye yazmadan önce biraz bekleyelim**
-        // sleep(2);
 
         // Write the larger number to FIFO2
         int fifo2_fd = open(FIFO2, O_WRONLY);
@@ -258,21 +299,12 @@ int main(int argc, char *argv[]) {
         write(fifo2_fd, &larger, sizeof(int));
         close(fifo2_fd);
 
-        printf("Child 1: Wrote larger number %d to FIFO2\n", larger);   //kee2ıofşo2jofciwv
-
         // Log the comparison result
         printf("Child 1 exiting...\n");
-        sleep(10);
         exit(EXIT_SUCCESS);
     }
 
-
-
-
-    
-    // **2. Parent -> FIFO1'e yazmadan önce Child 1'in başlamasını bekle**
-    sleep(2);
-     // First, Parent -> "FIFO1"  'e veri gönderme
+    // First, Parent process sends the numbers to the FIFO1
     int fifo1_fd = open(FIFO1, O_WRONLY);
     if (fifo1_fd == -1) {
         perror("Parent: Error opening FIFO1");
@@ -286,19 +318,24 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
-
-
-
     // Fork second child process
     pid_t child2 = fork();
     if (child2 == 0) {
+        sleep(10);
         
         children[1].pid = getpid();
         children[1].last_active = time(NULL);
 
-        printf("Child 2 started with PID: %d\n", getpid()); //CEuıhuoşf2eqjkvbjeqnnvıeqnvjknrşwjvnşwlk
+        printf("Child 2 started with PID: %d\n", getpid());
+        //ADDED
+        // Log the message to daemon_log.txt
+        int log_fd = open(DAEMON_FIFO, O_WRONLY | O_NONBLOCK);
+        if (log_fd != -1) {
+            char log_message[128];
+            snprintf(log_message, sizeof(log_message), "[%ld] Child 2 started with PID: %d\n", time(NULL), getpid());
+            write(log_fd, log_message, strlen(log_message));
+            close(log_fd);
+        }
 
         // Second child process (reads larger number from FIFO2)
         int fd = open(FIFO2, O_RDONLY);
@@ -311,28 +348,22 @@ int main(int argc, char *argv[]) {
         printf("Larger number: %d\n", larger);
         close(fd);
 
-        for (int i = 0; i < 5; i++) {
-            printf("Child 2 running... (Iteration %d)\n", i);
-            sleep(1);
-        }
-
-        sleep(10);
-        printf("Child 2 exiting...\n"); //e2uıfhşoıejı2fıoejpği
         
+        printf("Child 2 exiting...\n"); //e2uıfhşoıejı2fıoejpği
         exit(EXIT_SUCCESS);
     }
 
 
     // Parent process loop
-    while (counter < 4) {
+    while (counter < 4 && !terminate_daemon) {
         printf("Parent proceeding...\n");
-        printf("Counter: %d\n", counter);   // deneme için eklendi
         sleep(2);
     }
 
     unlink(FIFO1);
     unlink(FIFO2);
     unlink(DAEMON_FIFO);
+    unlink(STATUS_FIFO);
 
     printf("Parent process exiting.\n");
     return 0;
