@@ -15,6 +15,15 @@
 #define FIFO2 "/tmp/fifo2"
 #define DAEMON_FIFO "/tmp/daemon_fifo"
 #define STATUS_FIFO "/tmp/status_fifo"
+#define TIMEOUT_SECONDS 20
+
+typedef struct {
+    volatile pid_t pid;
+    volatile time_t last_activity;
+} ChildInfo;
+
+volatile ChildInfo children[2];       // Array to track child processes
+volatile int num_children = 0;        // Number of child processes being tracked
 
 int counter = 0;  // Counter for parent process
 int signal_pipe[2];  // Pipe for signal handling [0: read end, 1: write end]
@@ -32,25 +41,29 @@ void sigchld_handler(int signum) {
             perror("sigchld_handler: Failed to open STATUS_FIFO");
             return;
         }
-        dprintf(fd, "%d %d\n", pid, WEXITSTATUS(status));
+
+        char status_message[256];
+        if (WIFEXITED(status)) {
+            snprintf(status_message, sizeof(status_message), "Child process %d exited with status %d.\n", pid, WEXITSTATUS(status));
+        } else if (WIFSIGNALED(status)) {
+            snprintf(status_message, sizeof(status_message), "Child process %d was terminated by signal %d.\n", pid, WTERMSIG(status));
+        } else if (WIFSTOPPED(status)) {
+            snprintf(status_message, sizeof(status_message), "Child process %d was stopped by signal %d.\n", pid, WSTOPSIG(status));
+        } else {
+            snprintf(status_message, sizeof(status_message), "Child process %d terminated in an unknown way.\n", pid);
+        }
+
+        write(fd, status_message, strlen(status_message));
         close(fd);
 
-        // Zombie protection
-        if (WIFEXITED(status)) {
-            printf("Child process %d exited with status %d.\n", pid, WEXITSTATUS(status));
-        } else if (WIFSIGNALED(status)) {
-            printf("Child process %d was terminated by signal %d.\n", pid, WTERMSIG(status));
-        } else if (WIFSTOPPED(status)) {
-            printf("Child process %d was stopped by signal %d.\n", pid, WSTOPSIG(status));
-        } else {
-            printf("Child process %d terminated in an unknown way.\n", pid);
-        }
+        // Print the status message to the console
+        printf("%s", status_message);
+
         counter += 2; // Increase counter by 2
     }
-    
 }
 
-//BU KSIIMD DAEMON KENDİNİ KAPATIYOR; ACABA TÜM PROGRMI MI KAPATACAK
+
 void handle_signal(int sig) {
     char signal_char;
     if (sig == SIGTERM) {
@@ -67,7 +80,25 @@ void handle_signal(int sig) {
     write(signal_pipe[1], &signal_char, 1);
 }
 
- 
+void update_child_activity(pid_t pid) {
+    for (int i = 0; i < num_children; i++) {
+        if (children[i].pid == pid) {
+            children[i].last_activity = time(NULL);
+            return;
+        }
+    }
+}
+
+void check_child_timeouts() {
+    time_t current_time = time(NULL);
+    for (int i = 0; i < num_children; i++) {
+        if (difftime(current_time, children[i].last_activity) > TIMEOUT_SECONDS) {
+            fprintf(stderr, "[%ld] Daemon: Terminating inactive child %d due to timeout.\n", current_time, children[i].pid);
+            kill(children[i].pid, SIGTERM);  // Terminate the child process
+        }
+    }
+}
+
 void daemon_process(pid_t parent_pid) {
     // Redirect stdout and stderr to log files
     freopen("daemon_output.log", "a", stdout);
@@ -113,12 +144,17 @@ void daemon_process(pid_t parent_pid) {
     char buf[128];
     char signal_char;
 
+    // Initialize child tracking
+    for (int i = 0; i < num_children; i++) {
+        children[i].last_activity = time(NULL);  // Set initial activity time
+    }
+
     while (1) {
         // Check if the parent process is still alive
         if (getppid() != parent_pid) {
             log_file = fopen("daemon_log.txt", "a");
             if (log_file) {
-                fprintf(log_file, "[%ld] Daemon: Parent process terminated. Exiting...\n", time(NULL));
+                fprintf(log_file, "[%ld] Daemon: Parent process terminated PID: %d. Exiting...\n", time(NULL), parent_pid);
                 fclose(log_file);
             }
             break;
@@ -167,24 +203,26 @@ void daemon_process(pid_t parent_pid) {
             }
         }
 
+        
         // Exit statuses are logged to the log file
         while ((n = read(status_fd, buf, sizeof(buf) - 1)) > 0) {
-            buf[n] = '\0';
+            buf[n] = '\0';  // Null-terminate the string
+
             char *line = strtok(buf, "\n");
             while (line != NULL) {
-                int pid, status;
-                if (sscanf(line, "%d %d", &pid, &status) == 2) {
-                    log_file = fopen("daemon_log.txt", "a");
-                    if (log_file) {
-                        fprintf(log_file, "[%ld] Child process %d exited with status %d\n", time(NULL), pid, status);
-                        fclose(log_file);
-                    }
+                log_file = fopen("daemon_log.txt", "a");
+                if (log_file) {
+                    fprintf(log_file, "[%ld] %s\n", time(NULL), line);
+                    fclose(log_file);
                 } else {
-                    fprintf(stderr, "Daemon: Failed to parse status message: %s\n", line);
+                    fprintf(stderr, "Daemon: Failed to open log file for status message.\n");
                 }
-                line = strtok(NULL, "\n");
+                line = strtok(NULL, "\n");  // Move to the next message
             }
         }
+
+        // Check for child timeouts
+        check_child_timeouts();
 
         sleep(1);  // Prevent excessive CPU usage
     }
@@ -287,7 +325,6 @@ int main(int argc, char *argv[]) {
         sleep(10);
         printf("Child 1 started with PID: %d\n", getpid());
         
-        //ADDED
         // Log the message to daemon_log.txt
         int log_fd = open(DAEMON_FIFO, O_WRONLY | O_NONBLOCK);
         if (log_fd != -1) {
@@ -321,6 +358,8 @@ int main(int argc, char *argv[]) {
         close(fifo2_fd);
 
         exit(EXIT_SUCCESS);
+    } else {
+        children[num_children++] = (ChildInfo){.pid = child1, .last_activity = time(NULL)};
     }
 
     // First, Parent process sends the numbers to the FIFO1
@@ -335,22 +374,22 @@ int main(int argc, char *argv[]) {
     close(fifo1_fd);
     printf("Parent: Sent numbers %d and %d to FIFO1\n", num1, num2);
 
+    // Update activity in parent when sending numbers to FIFO1
+    update_child_activity(child1);
 
 
     // Fork second child process
     pid_t child2 = fork();
     if (child2 == 0) {
         sleep(10);
-        printf("Cild 2 startedwith PID: %d\n", getpid());
+        printf("Child 2 started with PID: %d\n", getpid());
         
-        //ADDED
         // Log the message to daemon_log.txt
         int log_fd = open(DAEMON_FIFO, O_WRONLY | O_NONBLOCK);
         if (log_fd != -1) {
             char log_message[128];
             snprintf(log_message, sizeof(log_message), "[%ld] Child 2 started with PID: %d\n", time(NULL), getpid());
             write(log_fd, log_message, strlen(log_message));
-            close(log_fd);
         }
 
         // Second child process (reads larger number from FIFO2)
@@ -361,11 +400,24 @@ int main(int argc, char *argv[]) {
         }
         int larger;
         read(fd, &larger, sizeof(int));
-        printf("***Larger number: %d***\n", larger);
         close(fd);
+        printf("***Larger number: %d***\n", larger);
+
+        // Send the larger number to the daemon
+        if (log_fd != -1) {
+            char larger_message[128];
+            snprintf(larger_message, sizeof(larger_message), "[%ld] Larger number: %d\n", time(NULL), larger);
+            write(log_fd, larger_message, strlen(larger_message));
+            close(log_fd);
+        }
 
         exit(EXIT_SUCCESS);
+    } else {
+        children[num_children++] = (ChildInfo){.pid = child2, .last_activity = time(NULL)};
     }
+
+    // Update activity in parent when sending numbers to FIFO1
+    update_child_activity(child2);
 
 
     // Parent process loop
@@ -374,6 +426,9 @@ int main(int argc, char *argv[]) {
         sleep(2);
     }
 
+    // Clean up resources
+    close(signal_pipe[0]);
+    close(signal_pipe[1]);
     unlink(FIFO1);
     unlink(FIFO2);
     unlink(DAEMON_FIFO);

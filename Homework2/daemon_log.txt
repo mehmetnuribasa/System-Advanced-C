@@ -1,242 +1,40 @@
-[1743891570] Daemon started with PID: 1758
-[1743891590] Daemon logged: Received numbers 10 and 140
-[1743891590] Child process 1759 exited with status 0
-[1743891591] Daemon exiting. PID: 1758[1743891982] Daemon started with PID: 1782
-[1743892002] Daemon logged: Received numbers 10 and 149
-[1743892002] Child process 1783 exited with status 0
-[1743892003] Daemon exiting. PID: 1782
-[1743892356] Daemon started with PID: 1805
-[1743892376] Daemon logged: Received numbers 10 and 141
-[1743892376] Child process 1806 exited with status 0
-[1743892377] Daemon exiting. PID: 1805
-[1743892602] Daemon started with PID: 1814
-[1743892603] Daemon logged: Received numbers 10 and 142
-[1743892622] Daemon exiting. PID: 1814
-[1743892895] Daemon started with PID: 1823
-[1743892896] Daemon logged: Received numbers 10 and 142
-[1743892915] Daemon exiting. PID: 1823
-[1743892990] Daemon started with PID: 1832
-[1743893011] Daemon logged: Received numbers 10 and 141
-[1743893011] Child process 1833 exited with status 0
-[1743893012] Daemon exiting. PID: 1832
-[1743893206] Daemon started with PID: 1841
-[1743893226] Daemon logged: Received numbers 10 and 145
-[1743893226] Child process 1842 exited with status 0
-[1743893227] Daemon exiting. PID: 1841
-[1743893428] Daemon started with PID: 1850
-[1743893448] Daemon logged: Received numbers 10 and 145
-[1743893448] Child process 1851 exited with status 0
-[1743893449] Daemon exiting. PID: 1850
-[1743893615] Daemon started with PID: 1859
-[1743893635] Daemon logged: Received numbers 10 and 146
-[1743893635] Child process 1860 exited with status 0
-[1743893636] Daemon exiting. PID: 1859
-[1743893895] Daemon started with PID: 1900
-[1743893905] Daemon started with PID: 1912
-[1743893925] Daemon logged: Received numbers 10 and 146
-[1743893925] Daemon logged: Received numbers 10 and 140
-[1743893925] Child process 1913 exited with status 0
-[1743893925] Child process 1922 exited with status 0
-[1743893926] Daemon exiting. PID: 1912
-[1743893939] Daemon received SIGTERM, terminating...
-[1743893939] Daemon exiting. PID: 1900
-[1743893952] Daemon started with PID: 1945
-[1743893972] Daemon logged: Received numbers 10 and 141
-[1743893972] Child process 1946 exited with status 0
-[1743893972] Child process 1960 exited with status 0
-[1743893973] Daemon exiting. PID: 1945
-[1743895637] Daemon started with PID: 2054
-[1743895646] Daemon received SIGTERM, terminating...
-[1743895657] Daemon exiting. PID: 2054
-[1743895981] Daemon started with PID: 2107
-[1743895987] Daemon started with PID: 2115
-[1743896004] Daemon received SIGTERM, terminating...
-[1743896007] Daemon logged: Received numbers 10 and 1412
-[1743896007] Daemon exiting. PID: 2107
-[1743896007] Child process 2122 exited with status 0
-[1743896007] Child process 2116 exited with status 0
-[1743896008] Daemon exiting. PID: 2115
-[1743896359] Daemon started with PID: 2151
-[1743896379] Daemon logged: Received numbers 10 and 1412
-[1743896379] Child process 2152 exited with status 0
-[1743896379] Child process 2153 exited with status 0
-[1743896380] Daemon exiting. PID: 2151
-[1743896568] Daemon started with PID: 2160
-[1743896588] Daemon logged: Received numbers 10 and 14
-[1743896588] Child process 2161 exited with status 0
-[1743896588] Child process 2162 exited with status 0
-[1743896589] Daemon exiting. PID: 2160
-[1743897054] Daemon started with PID: 2239
-[1743897074] Daemon logged: Received numbers 10 and 19
-[1743897074] Child process 2240 exited with status 0
-[1743897074] Child process 2251 exited with status 0
-[1743897064] Child 1 started with PID: 2240
-[1743897074] Child 2 started with PID: 2251
-[1743897075] Daemon exiting. PID: 2239
-[1743897486] Daemon started with PID: 2276
-[1743897506] Daemon logged: Received numbers 10 and 190
-[1743897496] Child 1 started with PID: 2277
-[1743897506] Child 2 started with PID: 2282
-[1743897506] Child process 2277 exited with status 0
-[1743897506] Child process 2282 exited with status 0
-[1743897507] Daemon exiting. PID: 2276
-[1743933194] Daemon started with PID: 207
-[1743933214] Daemon logged: Received numbers 10 and 192
-[1743933204] Child 1 started with PID: 208
-[1743933214] Child 2 started with PID: 213
-[1743933214] Child process 208 exited with status 0
-[1743933214] Child process 213 exited with status 0
-[1743933215] Daemon exiting. PID: 207
-[1743934647] Daemon started with PID: 322
-[1743934667] Daemon logged: Received numbers 10 and 200
-[1743934657] Child 1 started with PID: 323
-[1743934667] Child 2 started with PID: 331
-[1743934667] Child process 323 exited with status 0
-[1743934667] Child process 331 exited with status 0
-[1743934668] Daemon exiting. PID: 322
+[1744109362] Daemon started with PID: 534
+[1744109383] Daemon logged: Received numbers 26 and 10
+[1744109372] Child 1 started with PID: 535
+[1744109382] Child 2 started with PID: 541
+[1744109382] Larger number: 26
+[1744109383] Child process 535 exited with status 0.
+[1744109383] Child process 541 exited with status 0.
+[1744109384] Daemon: Parent process terminated PID: 533. Exiting...
+[1744109384] Daemon exiting. PID: 534
+[1744109481] Daemon started with PID: 590
+[1744109501] Daemon exiting. PID: 590
+[1744109612] Daemon started with PID: 685
+[1744109633] Daemon logged: Received numbers 10 and 15
+[1744109622] Child 1 started with PID: 686
+[1744109632] Child 2 started with PID: 687
+[1744109632] Larger number: 15
+[1744109633] Child process 686 exited with status 0.
+[1744109633] Child process 687 exited with status 0.
+[1744109634] Daemon: Parent process terminated PID: 684. Exiting...
+[1744109634] Daemon exiting. PID: 685
+[1744110005] Daemon started with PID: 770
+[1744110026] Daemon logged: Received numbers 10 and 20
+[1744110015] Child 1 started with PID: 771
+[1744110025] Child 2 started with PID: 772
+[1744110025] Larger number: 20
+[1744110026] Child process 771 exited with status 0.
+[1744110026] Child process 772 exited with status 0.
+[1744110027] Daemon: Parent process terminated PID: 769. Exiting...
+[1744110027] Daemon exiting. PID: 770
+[1744115003] Daemon started with PID: 189
+[1744115024] Daemon logged: Received numbers 10 and 30
+[1744115013] Child 1 started with PID: 190
+[1744115023] Child 2 started with PID: 200
+[1744115023] Larger number: 30
+[1744115024] Child process 190 exited with status 0.
+[1744115024] Child process 200 exited with status 0.
+[1744115025] Daemon: Parent process terminated PID: 188. Exiting...
+[1744115025] Daemon exiting. PID: 189
 
-[1743935365] Daemon started with PID: 373
-[1743935385] Daemon exiting. PID: 373
-[1743935800] Daemon started with PID: 430
-[1743935880] Daemon exiting. PID: 430
-[1743935905] Daemon started with PID: 471
-[1743935925] Daemon logged: Received numbers 10 and 20
-[1743935915] Child 1 started with PID: 472
-[1743935925] Child 2 started with PID: 473
-[1743935925] Child process 472 exited with status 0
-[1743935925] Child process 473 exited with status 0
-[1743935926] Daemon exiting. PID: 471
-[1743935967] Daemon started with PID: 483
-[1743935987] Daemon logged: Received numbers 10 and 202
-[1743935977] Child 1 started with PID: 484
-[1743935987] Child 2 started with PID: 488
-[1743935987] Child process 484 exited with status 0
-[1743935987] Child process 488 exited with status 0
-[1743935988] Daemon exiting. PID: 483
-[1743936015] Daemon started with PID: 523
-[1743936035] Daemon logged: Received numbers 10 and 203
-[1743936025] Child 1 started with PID: 524
-[1743936035] Child 2 started with PID: 525
-[1743936035] Child process 524 exited with status 0
-[1743936035] Child process 525 exited with status 0
-[1743936036] Daemon exiting. PID: 523
-[1743936284] Daemon started with PID: 555
-[1743936359] Daemon exiting. PID: 555
-[1743936364] Daemon started with PID: 574
-[1743936395] Daemon exiting. PID: 574
-[1743937129] Daemon started with PID: 641
-[1743937163] Daemon exiting. PID: 641
-[1743937212] Daemon started with PID: 684
-[1743937241] Daemon exiting. PID: 684
-[1743937444] Daemon started with PID: 742
-[1743937465] Daemon exiting. PID: 742
-[1743937807] Daemon started with PID: 752
-[1743937828] Daemon exiting. PID: 752
-[1743937962] Daemon started with PID: 761
-[1743937983] Daemon logged: Received numbers 10 and 211
-[1743937972] Child 1 started with PID: 762
-[1743937982] Child 2 started with PID: 763
-[1743937983] Child process 762 exited with status 0
-[1743937983] Child process 763 exited with status 0
-[1743937984] Daemon exiting. PID: 761
-[1743938317] Daemon started with PID: 783
-[1743938337] Daemon exiting. PID: 783
-[1743940736] Daemon started with PID: 816
-[1743940737] Daemon logged: Received numbers 10 and 212
-[1743940747] Daemon logged: Received numbers 876032347 and 808728883
-746] Child 1 started with PID: 817
-[1743940756] Daemon: Parent process terminated. Exiting...
-[1743940756] Daemon exiting. PID: 816
-[1743940784] Daemon started with PID: 837
-[1743940805] Daemon logged: Received numbers 10 and 215
-[1743940794] Child 1 started with PID: 838
-[1743940804] Child 2 started with PID: 839
-[1743940805] Child process 838 exited with status 0
-[1743940805] Child process 839 exited with status 0
-[1743940806] Daemon: Parent process terminated. Exiting...
-[1743940806] Daemon exiting. PID: 837
-[1743941129] Daemon started with PID: 861
-[1743941150] Daemon logged: Received numbers 10 and 215
-[1743941139] Child 1 started with PID: 862
-[1743941149] Child 2 started with PID: 863
-[1743941150] Child process 862 exited with status 0
-[1743941150] Child process 863 exited with status 0
-[1743941151] Daemon: Parent process terminated. Exiting...
-[1743941151] Daemon exiting. PID: 861
-[1743941596] Daemon started with PID: 895
-[1743941617] Daemon logged: Received numbers 10 and 216
-[1743941606] Child 1 started with PID: 896
-[1743941616] Child 2 started with PID: 897
-[1743941617] Child process 896 exited with status 0
-[1743941617] Child process 897 exited with status 0
-[1743941618] Daemon: Parent process terminated. Exiting...
-[1743941618] Daemon exiting. PID: 895
-[1743942014] Daemon started with PID: 923
-[1743942035] Daemon logged: Received numbers 10 and 216
-[1743942024] Child 1 started with PID: 924
-[1743942034] Child 2 started with PID: 925
-[1743942035] Child process 924 exited with status 0
-[1743942035] Child process 925 exited with status 0
-[1743942036] Daemon: Parent process terminated. Exiting...
-[1743942036] Daemon exiting. PID: 923
-[1743942064] Daemon started with PID: 932
-[1743942105] Daemon logged: Received numbers 10 and 216
-[1743942074] Child 1 started with PID: 933
-[1743942104] Child 2 started with PID: 934
-[1743942105] Child process 933 exited with status 0
-[1743942105] Child process 934 exited with status 0
-[1743942106] Daemon: Parent process terminated. Exiting...
-[1743942106] Daemon exiting. PID: 932
-[1743943312] Daemon started with PID: 988
-[1743943778] Daemon started with PID: 1031
-[1743943817] Daemon started with PID: 1053
-[1743943837] Daemon: Parent process terminated. Exiting...
-[1743943837] Daemon: Parent process terminated. Exiting...
-[1743943837] Daemon exiting. PID: 988
-[1743943837] Daemon exiting. PID: 1031
-[1743943838] Daemon logged: Received numbers 10 and 210
 
-[1743943838] Child process 1054 exited with status 0
-[1743943838] Child process 1058 exited with status 0
-[1743943839] Daemon: Parent process terminated. Exiting...
-[1743943839] Daemon exiting. PID: 1053
-[1743943986] Daemon started with PID: 1071
-[1743944007] Daemon logged: Received numbers 10 and 900
-[1743943996] Child 1 started with PID: 1072
-[1743944006] Child 2 started with PID: 1073
-[1743944007] Child process 1072 exited with status 0
-[1743944007] Child process 1073 exited with status 0
-[1743944008] Daemon: Parent process terminated. Exiting...
-[1743944008] Daemon exiting. PID: 1071
-[1743944657] Daemon started with PID: 1240
-[1743944678] Daemon logged: Received numbers 10 and 902
-[1743944667] Child 1 started with PID: 1241
-[1743944677] Child 2 started with PID: 1251
-[1743944678] Child process 1241 exited with status 0
-[1743944678] Child process 1251 exited with status 0
-[1743944679] Daemon: Parent process terminated. Exiting...
-[1743944679] Daemon exiting. PID: 1240
-[1743945057] Daemon started with PID: 1361
-[1743945078] Daemon logged: Received numbers 10 and 903
-[1743945067] Child 1 started with PID: 1362
-[1743945077] Child 2 started with PID: 1366
-[1743945078] Child process 1362 exited with status 0
-[1743945078] Child process 1366 exited with status 0
-[1743945079] Daemon: Parent process terminated. Exiting...
-[1743945079] Daemon exiting. PID: 1361
-[1743945786] Daemon started with PID: 1388
-[1743945807] Daemon logged: Received numbers 10 and 900
-[1743945796] Child 1 started with PID: 1389
-[1743945806] Child 2 started with PID: 1390
-[1743945807] Child process 1389 exited with status 0
-[1743945807] Child process 1390 exited with status 0
-[1743945808] Daemon: Parent process terminated. Exiting...
-[1743945808] Daemon exiting. PID: 1388
-[1743946232] Daemon started with PID: 1435
-[1743946253] Daemon logged: Received numbers 10 and 902
-[1743946242] Child 1 started with PID: 1436
-[1743946252] Child 2 started with PID: 1447
-[1743946253] Child process 1436 exited with status 0
-[1743946253] Child process 1447 exited with status 0
-[1743946254] Daemon: Parent process terminated. Exiting...
-[1743946254] Daemon exiting. PID: 1435
