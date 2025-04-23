@@ -13,8 +13,9 @@
 typedef struct {
     int id;
     int priority;
-    int timeout;         // in seconds
+    int timeout;         // in 5 seconds
     time_t arrivalTime;
+    sem_t requestHandled; // Semaphore for this specific satellite
 } SatelliteRequest;
 
 // Global Variables
@@ -28,7 +29,6 @@ int queueSize = 0;
 // Mutex and Semaphores
 pthread_mutex_t engineerMutex;
 sem_t newRequest;
-sem_t requestHandled;
 
 // Thread functions
 void* satellite(void* arg);
@@ -76,7 +76,6 @@ int main() {
     // Initialize mutex and semaphores
     pthread_mutex_init(&engineerMutex, NULL);
     sem_init(&newRequest, 0, 0);
-    sem_init(&requestHandled, 0, 0);
 
     // Create engineer threads
     pthread_t engineers[NUM_ENGINEERS];
@@ -113,7 +112,6 @@ int main() {
     // Cleanup
     pthread_mutex_destroy(&engineerMutex);
     sem_destroy(&newRequest);
-    sem_destroy(&requestHandled);
 
     return 0;
 }
@@ -122,28 +120,42 @@ int main() {
 void* satellite(void* arg) {
     int id = (int)(long)arg;
 
-    sleep(rand() % 10);  // simulate random arrival
-
     SatelliteRequest req;
     req.id = id;
     req.priority = rand() % 3 + 1;  // 1 to 3 (1 is highest priority)
     req.timeout = 5;               // Fixed timeout of 5 seconds
     req.arrivalTime = time(NULL);
+    sem_init(&req.requestHandled, 0, 0); // Initialize semaphore for this satellite
 
     printf("[SATELLITE] Satellite %d requesting (Priority: %d)\n", id, req.priority);
 
     enqueue_request(req);
     sem_post(&newRequest); // notify engineers
 
-    // Wait for response with timeout
+    // Timeout mechanism: Wait for response with timeout
     struct timespec ts;
     clock_gettime(CLOCK_REALTIME, &ts);
     ts.tv_sec += req.timeout;
 
-    if (sem_timedwait(&requestHandled, &ts) == -1) {
-        printf("[TIMEOUT] Satellite %d timeout %d seconds.\n", id, req.timeout);
+    if (sem_timedwait(&req.requestHandled, &ts) == -1) { // Wait on satellite-specific semaphore
+        pthread_mutex_lock(&engineerMutex);
+        // Check if the request is still in the queue
+        for (int i = 0; i < queueSize; i++) {
+            if (requestQueue[i].id == req.id) {
+                // Remove the request from the queue
+                for (int j = i; j < queueSize - 1; j++) {
+                    requestQueue[j] = requestQueue[j + 1];
+                }
+                queueSize--;
+                time_t currentTime = time(NULL);
+                printf("[TIMEOUT] Satellite %d timeout after %ld seconds.\n", id, currentTime - req.arrivalTime);
+                break;
+            }
+        }
+        pthread_mutex_unlock(&engineerMutex);
     }
 
+    sem_destroy(&req.requestHandled); // Destroy semaphore for this satellite
     pthread_exit(NULL);
 }
 
@@ -172,13 +184,16 @@ void* engineer(void* arg) {
             pthread_mutex_unlock(&engineerMutex);
 
             printf("[ENGINEER %d] Handling satellite %d (Priority %d)\n", id, req.id, req.priority);
-            sleep(4); // Simulate handling time
+
+            // Simulate random handling time (0 to 9 seconds)
+            int handlingTime = rand() % 20;
+            sleep(handlingTime);
 
             pthread_mutex_lock(&engineerMutex);
             availableEngineers++;
             pthread_mutex_unlock(&engineerMutex);
 
-            sem_post(&requestHandled); // Signal request handled
+            sem_post(&req.requestHandled); // Signal the specific satellite
             printf("[ENGINEER %d] Finished satellite %d.\n", id, req.id);
         }
     }
