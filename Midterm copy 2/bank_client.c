@@ -18,8 +18,6 @@ FILE *client_file = NULL;
 
 // Signal handler function
 void cleanup_handler(int sig) {
-    (void)sig; // Unused parameter warning suppression
-    
     printf("\nSignal received, cleaning up...\n");
     
     // Close client file if open
@@ -68,37 +66,8 @@ void process_transaction(const char* bank_id, const char* type, double amount) {
         printf("ERROR: Amount must be greater than 0\n");
         return;
     }
-
-    // Format the transaction message
-    char message[BUFFER_SIZE];
-    snprintf(message, BUFFER_SIZE, "%s %s %d", bank_id, type, (int)amount);
-
-    // Open client FIFO for writing request
-    int fifo_fd = open(client_fifo, O_WRONLY);
-    if (fifo_fd == -1) {
-        perror("open client fifo for write");
-        return;
-    }
-
-    // Send the transaction
-    write(fifo_fd, message, strlen(message));
-    close(fifo_fd);
-
-    // Read response from server
-    fifo_fd = open(client_fifo, O_RDONLY);
-    if (fifo_fd == -1) {
-        perror("open client fifo for read");
-        return;
-    }
-
-    char response[BUFFER_SIZE];
-    ssize_t bytes = read(fifo_fd, response, sizeof(response) - 1);
-    close(fifo_fd);
-
-    if (bytes > 0) {
-        response[bytes] = '\0';
-        printf("Server response: %s\n", response);
-    }
+    
+    // ... existing code ...
 }
 
 int main(int argc, char *argv[]) {
@@ -139,43 +108,11 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    // Ensure we don't exceed buffer size
-    int pid_len = snprintf(message, BUFFER_SIZE, "%d ", getpid());
-    if (pid_len >= BUFFER_SIZE) {
-        fprintf(stderr, "Error: PID too long\n");
-        close(server_fd);
-        fclose(client_file);
-        unlink(client_fifo);
-        exit(EXIT_FAILURE);
-    }
-    
-    // Copy client_fifo to message, ensuring we don't exceed buffer size
-    strncpy(message + pid_len, client_fifo, BUFFER_SIZE - pid_len - 1);
-    message[BUFFER_SIZE - 1] = '\0'; // Ensure null termination
-    
+    snprintf(message, BUFFER_SIZE, "%d %s", getpid(), client_fifo);
     write(server_fd, message, strlen(message));
     close(server_fd);
 
-    printf("\nClient sent: %s\n", message);
-
-    // Open client FIFO for writing once
-    int write_fd = open(client_fifo, O_WRONLY);
-    if (write_fd == -1) {
-        perror("open client fifo for write");
-        fclose(client_file);
-        unlink(client_fifo);
-        exit(EXIT_FAILURE);
-    }
-
-    // Open client FIFO for reading once
-    int read_fd = open(client_fifo, O_RDONLY);
-    if (read_fd == -1) {
-        perror("open client fifo for read");
-        close(write_fd);
-        fclose(client_file);
-        unlink(client_fifo);
-        exit(EXIT_FAILURE);
-    }
+    printf("Client sent: %s\n", message);
 
     // Process each request in the client file
     while (fgets(message, BUFFER_SIZE, client_file)) {
@@ -194,11 +131,26 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        // Send the transaction
-        write(write_fd, message, strlen(message));
+        // Open client FIFO for writing request
+        int fifo_fd = open(client_fifo, O_WRONLY);
+        if (fifo_fd == -1) {
+            perror("open client fifo for write");
+            break;
+        }
+
+        write(fifo_fd, message, strlen(message));
+        close(fifo_fd);
+        printf("Client sent transaction: %s\n", message);
 
         // Read response from server
-        ssize_t bytes = read(read_fd, response, sizeof(response) - 1);
+        printf("Client waiting for response...\n");
+        fifo_fd = open(client_fifo, O_RDONLY);
+        if (fifo_fd == -1) {
+            perror("open client fifo for read");
+            break;
+        }
+
+        ssize_t bytes = read(fifo_fd, response, sizeof(response) - 1);
         if (bytes > 0) {
             response[bytes] = '\0';
             printf("Client received: %s\n", response);
@@ -218,15 +170,13 @@ int main(int argc, char *argv[]) {
                 }
             }
         }
+
+        close(fifo_fd);
         
         // Add a small delay between transactions to allow tellers to process
         usleep(100000); // 100ms delay
     }
 
-    // Close FIFOs
-    close(write_fd);
-    close(read_fd);
-    
     fclose(client_file);
     unlink(client_fifo);
 
