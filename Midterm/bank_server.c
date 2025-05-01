@@ -118,14 +118,14 @@ void log_transaction(const char *log_message) {
     }
 }
 
-// BankID formatını kontrol eden fonksiyon
+// Function to validate BankID format
 bool is_valid_bank_id(const char* bank_id) {
     if (!bank_id) return false;
     
-    // BankID_XX formatını kontrol et
+    // BankID format: "BankID_XX" where XX is a number
     if (strncmp(bank_id, "BankID_", 7) != 0) return false;
     
-    // XX kısmının sayı olduğunu kontrol et
+    // Check if the number part is valid
     const char* num_part = bank_id + 7;
     for (int i = 0; num_part[i] != '\0'; i++) {
         if (!isdigit(num_part[i])) return false;
@@ -447,7 +447,7 @@ void load_accounts_from_log() {
     // Skip the header line
     fgets(line, BUFFER_SIZE, log_file);
 
-    // Geçici olarak hesapları saklamak için
+    // Initialize temporary account array
     Account temp_accounts[MAX_ACCOUNTS];
     int temp_account_count = 0;
 
@@ -457,18 +457,19 @@ void load_accounts_from_log() {
             continue; // Skip end of log markers
         }
 
-        // Hesap kapatma işlemi kontrolü
+        // Check for account closure
         if (line[0] == '#') {
             char bank_id[20];
             char type;
             int initial_deposit, withdrawal_amount, final_balance;
             
-            // Hesap kapatma formatını kontrol et
+            // Parse the closure line
+            // Example: # BankID_01 N 1000 W 500 500
             if (sscanf(line, "# %s %c %d W %d %d", bank_id, &type, &initial_deposit, &withdrawal_amount, &final_balance) == 5) {
-                // Bu hesabı geçici diziden kaldır
+                // Check if the account exists
                 for (int i = 0; i < temp_account_count; i++) {
                     if (strcmp(temp_accounts[i].bank_id, bank_id) == 0) {
-                        // Hesabı kaldır
+                        // Log the closure
                         for (int j = i; j < temp_account_count - 1; j++) {
                             temp_accounts[j] = temp_accounts[j + 1];
                         }
@@ -494,7 +495,7 @@ void load_accounts_from_log() {
                 next_bank_id = bank_num + 1;
             }
 
-            // Hesabı geçici dizide güncelle veya ekle
+            // Check if the account already exists in the temporary array
             int found = -1;
             for (int i = 0; i < temp_account_count; i++) {
                 if (strcmp(temp_accounts[i].bank_id, bank_id) == 0) {
@@ -504,7 +505,7 @@ void load_accounts_from_log() {
             }
 
             if (found == -1) {
-                // Yeni hesap ekle
+                // New account, add to temporary array
                 temp_accounts[temp_account_count].type = type;
                 temp_accounts[temp_account_count].account_id = temp_account_count;
                 strncpy(temp_accounts[temp_account_count].bank_id, bank_id, sizeof(temp_accounts[temp_account_count].bank_id));
@@ -512,13 +513,13 @@ void load_accounts_from_log() {
                 temp_accounts[temp_account_count].client_pid = 0;
                 temp_account_count++;
             } else {
-                // Var olan hesabı güncelle
+                // Existing account, update balance
                 temp_accounts[found].balance = current_balance;
             }
         }
     }
 
-    // Geçici dizideki hesapları ana diziye kopyala
+    // Append the loaded accounts to the global accounts array
     for (int i = 0; i < temp_account_count; i++) {
         accounts[account_count++] = temp_accounts[i];
     }
@@ -623,12 +624,13 @@ int main() {
         FD_ZERO(&read_fds);
         FD_SET(server_fd, &read_fds);
         
-        // Tüm client FIFO'larını da ekle
+        // all client fds
         for (int i = 0; i < client_count; i++) {
             FD_SET(client_fds[i], &read_fds);
         }
 
-        // En yüksek file descriptor'ı bul
+        // Wait for activity on server FIFO or any client FIFO
+        // Find the maximum file descriptor
         int max_fd = server_fd;
         for (int i = 0; i < client_count; i++) {
             if (client_fds[i] > max_fd) {
@@ -645,7 +647,7 @@ int main() {
             continue;
         }
 
-        // Server FIFO'dan yeni client bağlantısı
+        // Check if there is a new client connection
         if (FD_ISSET(server_fd, &read_fds)) {
             ssize_t bytes = read(server_fd, buffer, sizeof(buffer) - 1);
             if (bytes > 0) {
@@ -684,7 +686,7 @@ int main() {
                     buffer[bytes] = '\0';
                     printf("\nClient %d sent transaction: %s\n", client_pid, buffer);
 
-                    // Teller oluştur
+                    // create a new teller for each transaction
                     if (active_tellers >= MAX_TELLERS) {
                         printf("Maximum number of tellers reached. Cannot process more transactions.\n");
                         continue;
@@ -709,7 +711,7 @@ int main() {
                     strncpy(shared_data_array[active_tellers]->client_fifo, client_fifo, BUFFER_SIZE);
                     shared_data_array[active_tellers]->is_active = true;
 
-                    // İsteği shared memory'ye yaz
+                    // Copy request to shared memory
                     strncpy(shared_data_array[active_tellers]->request, buffer, BUFFER_SIZE);
 
                     // Create teller process
@@ -734,15 +736,15 @@ int main() {
 
                     active_tellers++;
                 } else if (bytes == 0) {
-                    // Client bağlantısı kapandı
+                    // close client FIFO
                     close(client_fds[i]);
                     
-                    // Client FIFO'yu listeden kaldır
+                    // Remove client from the list
                     for (int j = i; j < client_count - 1; j++) {
                         client_fds[j] = client_fds[j + 1];
                     }
                     client_count--;
-                    i--; // Aynı indeksi tekrar kontrol et
+                    i--;
                 }
             }
         }

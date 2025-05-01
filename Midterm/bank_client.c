@@ -34,14 +34,14 @@ void cleanup_handler(int sig) {
     exit(EXIT_SUCCESS);
 }
 
-// BankID formatını kontrol eden fonksiyon
+// function to check the format of BankID
 bool is_valid_bank_id(const char* bank_id) {
     if (!bank_id) return false;
     
-    // BankID_XX formatını kontrol et
+    // check if it starts with "BankID_"
     if (strncmp(bank_id, "BankID_", 7) != 0) return false;
     
-    // XX kısmının sayı olduğunu kontrol et
+    // check if the rest is a number
     const char* num_part = bank_id + 7;
     for (int i = 0; num_part[i] != '\0'; i++) {
         if (!isdigit(num_part[i])) return false;
@@ -51,19 +51,19 @@ bool is_valid_bank_id(const char* bank_id) {
 }
 
 void process_transaction(const char* bank_id, const char* type, double amount) {
-    // BankID kontrolü
+    // BankID check
     if (!is_valid_bank_id(bank_id)) {
         printf("ERROR: Invalid BankID format. Must be 'BankID_XX' where XX is a number\n");
         return;
     }
     
-    // İşlem tipi kontrolü
+    // Transaction type check
     if (strcmp(type, "deposit") != 0 && strcmp(type, "withdraw") != 0) {
         printf("ERROR: Invalid transaction type. Must be 'deposit' or 'withdraw'\n");
         return;
     }
     
-    // Miktar kontrolü
+    // Amount check
     if (amount <= 0) {
         printf("ERROR: Amount must be greater than 0\n");
         return;
