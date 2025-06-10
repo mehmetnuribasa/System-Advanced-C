@@ -1,0 +1,98 @@
+# Sorting Thread
+# Implements bubble sort algorithm
+# Input: N numbers starting from address 1000
+# Output: Sorted numbers in the same locations
+
+Begin Data Section
+# Thread Data
+1000 10   # N (number of elements)
+1001 0    # i (outer loop counter)
+1002 0    # j (inner loop counter)
+1003 0    # temp (for swapping)
+1004 0    # array[0]
+1005 0    # array[1]
+1006 0    # array[2]
+1007 0    # array[3]
+1008 0    # array[4]
+1009 0    # array[5]
+1010 0    # array[6]
+1011 0    # array[7]
+1012 0    # array[8]
+1013 0    # array[9]
+
+# Constants
+1014 1    # Constant 1
+1015 -1   # Constant -1
+
+End Data Section
+
+Begin Instruction Section
+# Initialize
+0 SET 10 1000  # Set N to 10 (number of elements)
+1 SET 0 1001   # Set i to 0
+2 SET 0 1002   # Set j to 0
+3 SYSCALL YIELD # Yield to OS
+
+# Outer Loop
+4 CPY 1001 1003  # temp = i
+5 ADD 1003 1     # temp = i + 1
+6 SUBI 1003 1000 # temp = i + 1 - N
+7 JIF 1003 50    # If i >= N-1, go to end
+8 SYSCALL YIELD  # Yield to OS
+
+# Inner Loop
+9 CPY 1002 1003  # temp = j
+10 ADD 1003 1    # temp = j + 1
+11 SUBI 1003 1000 # temp = j + 1 - N
+12 JIF 1003 40   # If j >= N-1, go to next i
+13 SYSCALL YIELD  # Yield to OS
+
+# Compare and Swap
+14 CPY 1002 1003  # temp = j
+15 ADD 1003 1004  # temp = j + array[0]
+16 CPY 1003 1003  # temp = array[j]
+17 ADD 1002 1     # j = j + 1
+18 CPY 1002 1003  # temp = j
+19 ADD 1003 1004  # temp = j + array[0]
+20 CPY 1003 1003  # temp = array[j]
+21 SUBI 1003 1003 # temp = array[j] - array[j-1]
+22 JIF 1003 30    # If array[j] <= array[j-1], swap
+23 SYSCALL YIELD  # Yield to OS
+
+# Next j
+24 ADD 1002 1     # j = j + 1
+25 SET 2 9        # Go to inner loop
+
+# Swap
+26 CPY 1002 1003  # temp = j
+27 ADD 1003 1004  # temp = j + array[0]
+28 CPY 1003 1003  # temp = array[j]
+29 SUB 1002 1     # j = j - 1
+30 CPY 1002 1003  # temp = j
+31 ADD 1003 1004  # temp = j + array[0]
+32 CPY 1003 1003  # temp = array[j]
+33 SET 2 24       # Go to next j
+34 SYSCALL YIELD  # Yield to OS
+
+# Next i
+35 ADD 1001 1     # i = i + 1
+36 SET 0 1002     # j = 0
+37 SET 2 4        # Go to outer loop
+
+# Print Results
+40 SET 0 1002     # j = 0
+41 CPY 1002 1003  # temp = j
+42 ADD 1003 1004  # temp = j + array[0]
+43 CPY 1003 1003  # temp = array[j]
+44 SYSCALL PRN 1003 # Print array[j]
+45 ADD 1002 1     # j = j + 1
+46 CPY 1002 1003  # temp = j
+47 SUBI 1003 1000 # temp = j - N
+48 JIF 1003 50    # If j >= N, go to end
+49 SET 2 41       # Go to next print
+50 SYSCALL YIELD  # Yield to OS
+
+# End
+51 SYSCALL HLT    # Halt thread
+
+End Instruction Section 

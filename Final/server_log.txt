@@ -1,0 +1,42 @@
+2025-05-30 04:15:41 - [CONNECT] user 'mehmet' connected from 127.0.0.1
+2025-05-30 04:15:46 - [CONNECT] user 'ali' connected from 127.0.0.1
+2025-05-30 04:15:52 - [COMMAND] mehmet joined room 'chat'
+2025-05-30 04:15:57 - [COMMAND] ali joined room 'chat'
+2025-05-30 04:16:07 - [COMMAND] mehmet broadcasted to 'chat'
+2025-05-30 04:16:17 - [ERROR] Whisper target not found: mehmet to alii
+2025-05-30 04:16:23 - [COMMAND] mehmet sent whisper to ali
+2025-05-30 04:16:46 - [ERROR] Sendfile from mehmet failed: target user alii not found or offline
+2025-05-30 04:16:53 - [FILE-QUEUE] Upload 'trial.txt' from mehmet added to queue. Queue size: 1
+2025-05-30 04:16:53 - [COMMAND] mehmet initiated file transfer to ali
+2025-05-30 04:16:55 - [FILE] 'trial.txt' from user 'mehmet' started upload after 2 seconds in queue.
+2025-05-30 04:16:55 - [FILE] Successfully transferred 'trial.txt' from mehmet to ali
+2025-05-30 04:17:06 - [DISCONNECT] Client mehmet disconnected.
+2025-05-30 04:17:09 - [SHUTDOWN] SIGINT received. Disconnecting 1 clients, saving logs.
+2025-05-30 04:17:09 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-05-30 18:10:08 - [CONNECT] user 'mehmet' connected from 127.0.0.1
+2025-05-30 18:10:15 - [CONNECT] user 'ali' connected from 127.0.0.1
+2025-05-30 18:10:23 - [COMMAND] mehmet joined room 'chatt'
+2025-05-30 18:10:30 - [COMMAND] ali joined room 'chatt'
+2025-05-30 18:10:45 - [COMMAND] mehmet broadcasted to 'chatt'
+2025-05-30 18:10:57 - [ERROR] Whisper target not found: mehmet to alii
+2025-05-30 18:11:00 - [COMMAND] mehmet sent whisper to ali
+2025-05-30 18:11:15 - [ERROR] Sendfile from mehmet failed: target user alii not found or offline
+2025-05-30 18:11:21 - [FILE-QUEUE] Upload 'trial.txt' from mehmet added to queue. Queue size: 1
+2025-05-30 18:11:21 - [COMMAND] mehmet initiated file transfer to ali
+2025-05-30 18:11:23 - [FILE] 'trial.txt' from user 'mehmet' started upload after 2 seconds in queue.
+2025-05-30 18:11:23 - [FILE] Successfully transferred 'trial.txt' from mehmet to ali
+2025-05-30 18:11:33 - [DISCONNECT] Client mehmet disconnected.
+2025-05-30 18:11:37 - [SHUTDOWN] SIGINT received. Disconnecting 1 clients, saving logs.
+2025-05-30 18:11:37 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-05-30 18:37:17 - [CONNECT] user 'mehmet' connected from 127.0.0.1
+2025-05-30 18:37:23 - [CONNECT] user 'ali' connected from 127.0.0.1
+2025-05-30 18:37:31 - [FILE-QUEUE] Upload 'trial.txt' from ali added to queue. Queue size: 1
+2025-05-30 18:37:31 - [COMMAND] ali initiated file transfer to ali
+2025-05-30 18:37:33 - [FILE] 'trial.txt' from user 'ali' started upload after 2 seconds in queue.
+2025-05-30 18:37:33 - [FILE] Successfully transferred 'trial.txt' from ali to ali
+2025-05-30 18:37:55 - [FILE-QUEUE] Upload 'trial.txt' from ali added to queue. Queue size: 1
+2025-05-30 18:37:55 - [COMMAND] ali initiated file transfer to mehmet
+2025-05-30 18:37:57 - [FILE] 'trial.txt' from user 'ali' started upload after 2 seconds in queue.
+2025-05-30 18:37:57 - [FILE] Successfully transferred 'trial.txt' from ali to mehmet
+2025-05-30 18:38:01 - [SHUTDOWN] SIGINT received. Disconnecting 2 clients, saving logs.
+2025-05-30 18:38:01 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.

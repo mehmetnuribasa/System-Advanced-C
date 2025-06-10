@@ -1,0 +1,74 @@
+# Test Program
+# Tests the OS and threads with sample data
+
+Begin Data Section
+# Thread Table (10 threads)
+# Format: ID, Start Time, Exec Count, State, PC, SP, Base Address
+30 0    # Thread 0 (OS) ID
+31 0    # Thread 0 Start Time
+32 0    # Thread 0 Exec Count
+33 0    # Thread 0 State (0: READY, 1: RUNNING, 2: BLOCKED, 3: TERMINATED)
+34 100  # Thread 0 PC
+35 999  # Thread 0 SP
+36 0    # Thread 0 Base Address
+
+37 1    # Thread 1 ID
+38 0    # Thread 1 Start Time
+39 0    # Thread 1 Exec Count
+40 0    # Thread 1 State
+41 1000 # Thread 1 PC
+42 1999 # Thread 1 SP
+43 1000 # Thread 1 Base Address
+
+# System Call Data
+15 0    # System Call Type
+16 0    # System Call Parameter
+17 0    # System Call Result
+18 0    # Blocked Thread ID
+19 0    # Timer
+20 0    # OS State (0: IDLE, 1: RUNNING)
+
+# Constants
+21 0    # Constant 0
+22 1    # Constant 1
+23 2    # Constant 2
+24 3    # Constant 3
+
+# Test Data
+1000 5    # Test value 1
+1001 10   # Test value 2
+1002 15   # Test value 3
+
+End Data Section
+
+Begin Instruction Section
+# Initialize OS
+0 SET 0 20      # Set OS state to IDLE
+1 SET 0 15      # Clear system call type
+2 SET 0 16      # Clear system call parameter
+3 SET 0 17      # Clear system call result
+4 SET 0 18      # Clear blocked thread
+5 SET 0 19      # Clear timer
+6 SET 0 33      # Set OS thread state to READY
+7 SET 100 34    # Set OS PC
+8 SET 999 35    # Set OS SP
+9 SET 0 36      # Set OS base address
+10 USER         # Switch to user mode
+
+# Test Print
+11 CPY 1000 17  # Get test value 1
+12 SYSCALL PRN 17 # Print value
+13 SYSCALL YIELD # Yield to OS
+
+14 CPY 1001 17  # Get test value 2
+15 SYSCALL PRN 17 # Print value
+16 SYSCALL YIELD # Yield to OS
+
+17 CPY 1002 17  # Get test value 3
+18 SYSCALL PRN 17 # Print value
+19 SYSCALL YIELD # Yield to OS
+
+# End
+20 SYSCALL HLT   # Halt thread
+
+End Instruction Section 

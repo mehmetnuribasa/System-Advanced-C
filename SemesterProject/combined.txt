@@ -1,0 +1,306 @@
+# Combined Program (OS + Threads)
+Begin Data Section
+# Thread Table (10 threads)
+# Format: ID, Start Time, Exec Count, State, PC, SP, Base Address
+30 0    # Thread 0 (OS) ID
+31 0    # Thread 0 Start Time
+32 0    # Thread 0 Exec Count
+33 0    # Thread 0 State (0: READY, 1: RUNNING, 2: BLOCKED, 3: TERMINATED)
+34 100  # Thread 0 PC
+35 999  # Thread 0 SP
+36 0    # Thread 0 Base Address
+
+37 1    # Thread 1 ID
+38 0    # Thread 1 Start Time
+39 0    # Thread 1 Exec Count
+40 0    # Thread 1 State
+41 1000 # Thread 1 PC
+42 1999 # Thread 1 SP
+43 1000 # Thread 1 Base Address
+
+44 2    # Thread 2 ID
+45 0    # Thread 2 Start Time
+46 0    # Thread 2 Exec Count
+47 0    # Thread 2 State
+48 2000 # Thread 2 PC
+49 2999 # Thread 2 SP
+50 2000 # Thread 2 Base Address
+
+51 3    # Thread 3 ID
+52 0    # Thread 3 Start Time
+53 0    # Thread 3 Exec Count
+54 0    # Thread 3 State
+55 3000 # Thread 3 PC
+56 3999 # Thread 3 SP
+57 3000 # Thread 3 Base Address
+
+# System Call Data
+15 0    # System Call Type
+16 0    # System Call Parameter
+17 0    # System Call Result
+18 0    # Blocked Thread ID
+19 0    # Timer
+20 0    # OS State (0: IDLE, 1: RUNNING)
+
+# Constants
+21 0    # Constant 0
+22 1    # Constant 1
+23 2    # Constant 2
+24 3    # Constant 3
+25 4    # Constant 4
+26 5    # Constant 5
+27 6    # Constant 6
+28 7    # Constant 7
+29 8    # Constant 8
+30 9    # Constant 9
+31 10   # Constant 10
+
+# Sort Thread Data
+1000 10   # N (number of elements)
+1001 0    # i (outer loop counter)
+1002 0    # j (inner loop counter)
+1003 0    # temp (for swapping)
+1004 5    # array[0]
+1005 2    # array[1]
+1006 8    # array[2]
+1007 1    # array[3]
+1008 9    # array[4]
+1009 3    # array[5]
+1010 7    # array[6]
+1011 4    # array[7]
+1012 6    # array[8]
+1013 0    # array[9]
+
+# Search Thread Data
+2000 10   # N (number of elements)
+2001 0    # i (loop counter)
+2002 0    # found (result)
+2003 0    # key (search value)
+2004 5    # array[0]
+2005 2    # array[1]
+2006 8    # array[2]
+2007 1    # array[3]
+2008 9    # array[4]
+2009 3    # array[5]
+2010 7    # array[6]
+2011 4    # array[7]
+2012 6    # array[8]
+2013 0    # array[9]
+2014 8    # key value
+
+# Custom Thread Data
+3000 10   # N (number of elements to generate)
+3001 0    # i (loop counter)
+3002 1    # a (first number)
+3003 1    # b (second number)
+3004 0    # c (current number)
+3005 0    # temp (for calculations)
+
+End Data Section
+
+Begin Instruction Section
+# OS Instructions (0-99)
+# Initialize OS
+0 SET 0 20      # Set OS state to IDLE
+1 SET 0 15      # Clear system call type
+2 SET 0 16      # Clear system call parameter
+3 SET 0 17      # Clear system call result
+4 SET 0 18      # Clear blocked thread
+5 SET 0 19      # Clear timer
+6 SET 0 33      # Set OS thread state to READY
+7 SET 100 34    # Set OS PC
+8 SET 999 35    # Set OS SP
+9 SET 0 36      # Set OS base address
+10 USER         # Switch to user mode
+
+# Main OS Loop
+11 CPY 20 17    # Check OS state
+12 JIF 17 11    # If IDLE, continue checking
+13 CPY 15 17    # Get system call type
+14 JIF 17 20    # If no system call, check timer
+15 CPY 16 17    # Get system call parameter
+16 JIF 17 20    # If no parameter, check timer
+
+# Handle System Calls
+17 CPY 15 17    # Get system call type
+18 SUBI 17 22   # Check if PRN (1)
+19 JIF 17 30    # If not PRN, check YIELD
+20 CPY 16 17    # Get parameter (address to print)
+21 SYSCALL PRN 17 # Print value
+22 SET 100 19   # Set timer to 100
+23 SET 2 18     # Set blocked thread to current
+24 SET 0 20     # Set OS state to IDLE
+25 SET 2 33     # Set OS state to BLOCKED
+26 SET 2 11     # Go to main loop
+
+# Handle YIELD
+30 CPY 15 17    # Get system call type
+31 SUBI 17 23   # Check if YIELD (2)
+32 JIF 17 40    # If not YIELD, check HLT
+33 SET 0 20     # Set OS state to IDLE
+34 SET 0 33     # Set OS state to READY
+35 SET 2 11     # Go to main loop
+
+# Handle HLT
+40 CPY 15 17    # Get system call type
+41 SUBI 17 24   # Check if HLT (3)
+42 JIF 17 50    # If not HLT, check timer
+43 SET 3 33     # Set OS state to TERMINATED
+44 SET 0 20     # Set OS state to IDLE
+45 SET 2 11     # Go to main loop
+
+# Check Timer
+50 CPY 19 17    # Get timer value
+51 JIF 17 60    # If timer > 0, decrement
+52 SET 0 18     # Clear blocked thread
+53 SET 0 33     # Set OS state to READY
+54 SET 2 11     # Go to main loop
+
+# Decrement Timer
+60 SUBI 17 22   # Decrement timer
+61 SET 2 11     # Go to main loop
+
+# Sort Thread Instructions (1000-1999)
+1000 SET 10 1000  # Set N to 10 (number of elements)
+1001 SET 0 1001   # Set i to 0
+1002 SET 0 1002   # Set j to 0
+1003 SYSCALL YIELD # Yield to OS
+
+# Outer Loop
+1004 CPY 1001 1003  # temp = i
+1005 ADD 1003 1     # temp = i + 1
+1006 SUBI 1003 1000 # temp = i + 1 - N
+1007 JIF 1003 1050  # If i >= N-1, go to end
+1008 SYSCALL YIELD  # Yield to OS
+
+# Inner Loop
+1009 CPY 1002 1003  # temp = j
+1010 ADD 1003 1     # temp = j + 1
+1011 SUBI 1003 1000 # temp = j + 1 - N
+1012 JIF 1003 1040  # If j >= N-1, go to next i
+1013 SYSCALL YIELD  # Yield to OS
+
+# Compare and Swap
+1014 CPY 1002 1003  # temp = j
+1015 ADD 1003 1004  # temp = j + array[0]
+1016 CPY 1003 1003  # temp = array[j]
+1017 ADD 1002 1     # j = j + 1
+1018 CPY 1002 1003  # temp = j
+1019 ADD 1003 1004  # temp = j + array[0]
+1020 CPY 1003 1003  # temp = array[j]
+1021 SUBI 1003 1003 # temp = array[j] - array[j-1]
+1022 JIF 1003 1030  # If array[j] <= array[j-1], swap
+1023 SYSCALL YIELD  # Yield to OS
+
+# Next j
+1024 ADD 1002 1     # j = j + 1
+1025 SET 2 1009     # Go to inner loop
+
+# Swap
+1026 CPY 1002 1003  # temp = j
+1027 ADD 1003 1004  # temp = j + array[0]
+1028 CPY 1003 1003  # temp = array[j]
+1029 SUB 1002 1     # j = j - 1
+1030 CPY 1002 1003  # temp = j
+1031 ADD 1003 1004  # temp = j + array[0]
+1032 CPY 1003 1003  # temp = array[j]
+1033 SET 2 1024     # Go to next j
+1034 SYSCALL YIELD  # Yield to OS
+
+# Next i
+1035 ADD 1001 1     # i = i + 1
+1036 SET 0 1002     # j = 0
+1037 SET 2 1004     # Go to outer loop
+
+# Print Results
+1040 SET 0 1002     # j = 0
+1041 CPY 1002 1003  # temp = j
+1042 ADD 1003 1004  # temp = j + array[0]
+1043 CPY 1003 1003  # temp = array[j]
+1044 SYSCALL PRN 1003 # Print array[j]
+1045 ADD 1002 1     # j = j + 1
+1046 CPY 1002 1003  # temp = j
+1047 SUBI 1003 1000 # temp = j - N
+1048 JIF 1003 1050  # If j >= N, go to end
+1049 SET 2 1041     # Go to next print
+1050 SYSCALL YIELD  # Yield to OS
+
+# End
+1051 SYSCALL HLT    # Halt thread
+
+# Search Thread Instructions (2000-2999)
+2000 SET 10 2000  # Set N to 10 (number of elements)
+2001 SET 0 2001   # Set i to 0
+2002 SET -1 2002  # Set found to -1 (not found)
+2003 SET 8 2014   # Set key to 8 (search value)
+2004 SYSCALL YIELD # Yield to OS
+
+# Main Search Loop
+2005 CPY 2001 2003  # temp = i
+2006 SUBI 2003 2000 # temp = i - N
+2007 JIF 2003 2020  # If i >= N, go to print result
+2008 SYSCALL YIELD  # Yield to OS
+
+# Compare current element with key
+2009 CPY 2001 2003  # temp = i
+2010 ADD 2003 2004  # temp = i + array[0]
+2011 CPY 2003 2003  # temp = array[i]
+2012 SUBI 2003 2014 # temp = array[i] - key
+2013 JIF 2003 2015  # If array[i] == key, set found
+2014 SYSCALL YIELD  # Yield to OS
+
+# Next element
+2015 ADD 2001 1    # i = i + 1
+2016 SET 2 2005    # Go to main loop
+
+# Set found position
+2017 CPY 2001 2002 # found = i
+2018 SET 2 2020    # Go to print result
+
+# Print Result
+2020 CPY 2002 2003 # temp = found
+2021 SYSCALL PRN 2003 # Print found position
+2022 SYSCALL YIELD # Yield to OS
+
+# End
+2023 SYSCALL HLT   # Halt thread
+
+# Custom Thread Instructions (3000-3999)
+3000 SET 10 3000  # Set N to 10 (number of elements)
+3001 SET 0 3001   # Set i to 0
+3002 SET 1 3002   # Set a to 1
+3003 SET 1 3003   # Set b to 1
+3004 SYSCALL YIELD # Yield to OS
+
+# Print first number
+3005 CPY 3002 3004 # c = a
+3006 SYSCALL PRN 3004 # Print c
+3007 SYSCALL YIELD # Yield to OS
+
+# Print second number
+3008 CPY 3003 3004 # c = b
+3009 SYSCALL PRN 3004 # Print c
+3010 SYSCALL YIELD # Yield to OS
+
+# Main Loop
+3011 CPY 3001 3005 # temp = i
+3012 SUBI 3005 3000 # temp = i - N
+3013 JIF 3005 3025  # If i >= N, go to end
+3014 SYSCALL YIELD  # Yield to OS
+
+# Generate next number
+3015 CPY 3002 3004 # c = a
+3016 ADD 3004 3003 # c = a + b
+3017 CPY 3003 3002 # a = b
+3018 CPY 3004 3003 # b = c
+3019 SYSCALL PRN 3004 # Print c
+3020 SYSCALL YIELD # Yield to OS
+
+# Next iteration
+3021 ADD 3001 1    # i = i + 1
+3022 SET 2 3011    # Go to main loop
+
+# End
+3025 SYSCALL HLT   # Halt thread
+
+End Instruction Section 

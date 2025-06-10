@@ -1,0 +1,256 @@
+# GTU-C312 Operating System
+# Memory Layout:
+# 0-20: Registers
+# 21-999: OS Data and Code
+# 1000-1999: Thread 1
+# 2000-2999: Thread 2
+# 3000-3999: Thread 3
+# 4000-4999: Thread 4
+# 5000-5999: Thread 5
+# 6000-6999: Thread 6
+# 7000-7999: Thread 7
+# 8000-8999: Thread 8
+# 9000-9999: Thread 9
+# 10000-10999: Thread 10
+
+Begin Data Section
+# Registers
+0 0    # Program Counter
+1 0    # Stack Pointer
+2 0    # System Call Result
+3 0    # Instruction Counter
+
+# OS Data
+21 0   # Current Thread ID
+22 30  # Thread Table Start Address
+23 10  # Number of Threads
+24 0   # OS State (0: IDLE, 1: RUNNING)
+25 0   # System Call Type
+26 0   # System Call Parameter
+27 0   # System Call Result
+28 0   # Blocked Thread ID
+29 0   # Timer
+
+# Thread Table (10 threads)
+# Format for each thread (10 words):
+# - Word 0: Thread ID
+# - Word 1: Start Time (instruction count at start)
+# - Word 2: Execution Count
+# - Word 3: State (0: READY, 1: RUNNING, 2: BLOCKED, 3: TERMINATED)
+# - Word 4: Program Counter (PC)
+# - Word 5: Stack Pointer (SP)
+# - Word 6: Base Address
+# - Word 7: Last Execution Time (when thread was last run)
+# - Word 8: Total Blocked Time (how long thread was blocked)
+# - Word 9: Priority (for future use)
+
+# Thread 0 (OS)
+30 0    # ID
+31 0    # Start Time
+32 0    # Exec Count
+33 0    # State (READY)
+34 100  # PC
+35 999  # SP
+36 0    # Base Address
+37 0    # Last Execution Time
+38 0    # Total Blocked Time
+39 0    # Priority
+
+# Thread 1
+40 1    # ID
+41 0    # Start Time
+42 0    # Exec Count
+43 0    # State (READY)
+44 1000 # PC
+45 1999 # SP
+46 1000 # Base Address
+47 0    # Last Execution Time
+48 0    # Total Blocked Time
+49 0    # Priority
+
+# Thread 2
+50 2    # ID
+51 0    # Start Time
+52 0    # Exec Count
+53 0    # State (READY)
+54 2000 # PC
+55 2999 # SP
+56 2000 # Base Address
+57 0    # Last Execution Time
+58 0    # Total Blocked Time
+59 0    # Priority
+
+# Thread 3
+60 3    # ID
+61 0    # Start Time
+62 0    # Exec Count
+63 0    # State (READY)
+64 3000 # PC
+65 3999 # SP
+66 3000 # Base Address
+67 0    # Last Execution Time
+68 0    # Total Blocked Time
+69 0    # Priority
+
+# Thread 4
+70 4    # ID
+71 0    # Start Time
+72 0    # Exec Count
+73 0    # State (READY)
+74 4000 # PC
+75 4999 # SP
+76 4000 # Base Address
+77 0    # Last Execution Time
+78 0    # Total Blocked Time
+79 0    # Priority
+
+# Thread 5
+80 5    # ID
+81 0    # Start Time
+82 0    # Exec Count
+83 0    # State (READY)
+84 5000 # PC
+85 5999 # SP
+86 5000 # Base Address
+87 0    # Last Execution Time
+88 0    # Total Blocked Time
+89 0    # Priority
+
+# Thread 6
+90 6    # ID
+91 0    # Start Time
+92 0    # Exec Count
+93 0    # State (READY)
+94 6000 # PC
+95 6999 # SP
+96 6000 # Base Address
+97 0    # Last Execution Time
+98 0    # Total Blocked Time
+99 0    # Priority
+
+# Thread 7
+100 7    # ID
+101 0    # Start Time
+102 0    # Exec Count
+103 0    # State (READY)
+104 7000 # PC
+105 7999 # SP
+106 7000 # Base Address
+107 0    # Last Execution Time
+108 0    # Total Blocked Time
+109 0    # Priority
+
+# Thread 8
+110 8    # ID
+111 0    # Start Time
+112 0    # Exec Count
+113 0    # State (READY)
+114 8000 # PC
+115 8999 # SP
+116 8000 # Base Address
+117 0    # Last Execution Time
+118 0    # Total Blocked Time
+119 0    # Priority
+
+# Thread 9
+120 9    # ID
+121 0    # Start Time
+122 0    # Exec Count
+123 0    # State (READY)
+124 9000 # PC
+125 9999 # SP
+126 9000 # Base Address
+127 0    # Last Execution Time
+128 0    # Total Blocked Time
+129 0    # Priority
+
+# Constants
+130 0    # Constant 0
+131 1    # Constant 1
+132 2    # Constant 2
+133 3    # Constant 3
+134 4    # Constant 4
+135 5    # Constant 5
+136 6    # Constant 6
+137 7    # Constant 7
+138 8    # Constant 8
+139 9    # Constant 9
+140 10   # Constant 10
+
+End Data Section
+
+Begin Instruction Section
+# Initialize OS
+0 SET 0 24      # Set OS state to IDLE
+1 SET 0 25      # Clear system call type
+2 SET 0 26      # Clear system call parameter
+3 SET 0 27      # Clear system call result
+4 SET 0 28      # Clear blocked thread
+5 SET 0 29      # Clear timer
+6 SET 0 33      # Set OS thread state to READY
+7 SET 100 34    # Set OS PC
+8 SET 999 35    # Set OS SP
+9 SET 0 36      # Set OS base address
+10 SET 0 37     # Set OS last execution time
+11 SET 0 38     # Set OS total blocked time
+12 SET 0 39     # Set OS priority
+13 USER         # Switch to user mode
+
+# Main OS Loop
+14 CPY 24 27    # Check OS state
+15 JIF 27 14    # If IDLE, continue checking
+16 CPY 25 27    # Get system call type
+17 JIF 27 23    # If no system call, check timer
+18 CPY 26 27    # Get system call parameter
+19 JIF 27 23    # If no parameter, check timer
+
+# Handle System Calls
+20 CPY 25 27    # Get system call type
+21 SUBI 27 131  # Check if PRN (1)
+22 JIF 27 33    # If not PRN, check YIELD
+23 CPY 26 27    # Get parameter (address to print)
+24 SYSCALL PRN 27 # Print value
+25 SET 100 29   # Set timer to 100
+26 CPY 21 28    # Set blocked thread to current
+27 SET 0 24     # Set OS state to IDLE
+28 SET 2 33     # Set current thread state to BLOCKED
+29 CPY 3 27     # Get current instruction count
+30 CPY 27 37    # Update last execution time
+31 SET 2 14     # Go to main loop
+
+# Handle YIELD
+33 CPY 25 27    # Get system call type
+34 SUBI 27 132  # Check if YIELD (2)
+35 JIF 27 43    # If not YIELD, check HLT
+36 SET 0 24     # Set OS state to IDLE
+37 SET 0 33     # Set current thread state to READY
+38 CPY 3 27     # Get instruction counter
+39 CPY 27 31    # Update thread start time
+40 ADDI 32 131  # Increment execution count
+41 CPY 3 27     # Get current instruction count
+42 CPY 27 37    # Update last execution time
+43 SET 2 14     # Go to main loop
+
+# Handle HLT
+44 CPY 25 27    # Get system call type
+45 SUBI 27 133  # Check if HLT (3)
+46 JIF 27 54    # If not HLT, check timer
+47 SET 3 33     # Set current thread state to TERMINATED
+48 SET 0 24     # Set OS state to IDLE
+49 CPY 3 27     # Get current instruction count
+50 CPY 27 37    # Update last execution time
+51 SET 2 14     # Go to main loop
+
+# Check Timer
+54 CPY 29 27    # Get timer value
+55 JIF 27 14    # If timer is 0, continue checking
+56 SUBI 29 131  # Decrement timer
+57 CPY 28 27    # Get blocked thread ID
+58 JIF 27 14    # If no blocked thread, continue checking
+59 SET 0 33     # Set blocked thread state to READY
+60 SET 0 28     # Clear blocked thread
+61 CPY 3 27     # Get current instruction count
+62 CPY 27 37    # Update last execution time
+63 SET 2 14     # Go to main loop
+
+End Instruction Section 

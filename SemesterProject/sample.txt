@@ -1,0 +1,22 @@
+#Program sample
+Begin Data Section
+0 0   #program counter
+1 0   #stack pointer
+2 0   #system call result
+3 0   #number of instructions executed
+4 0   #reserved
+5 0   #reserved
+...
+255 0
+End Data Section
+
+Begin Instruction Section
+0 SET 10 50    # i = 10
+1 SET 0 51     # sum = 0
+2 ADDI 50 51   # sum = sum + i
+3 ADD 50 -1    # i = i - 1
+4 JIF 50 7     # Go to 7 if i <= 0
+5 SYSCALL 1 51 # print the sum so far
+6 JIF 0 2      # Go to 2
+7 SYSCALL 2 0  # end of program
+End Instruction Section 

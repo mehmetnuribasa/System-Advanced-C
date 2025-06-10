@@ -1,0 +1,3 @@
+/mnt/c/Users/mehme/Documents/GitHub/System(Advanced C)/SemesterProject/build/CMakeFiles/simulate.dir
+/mnt/c/Users/mehme/Documents/GitHub/System(Advanced C)/SemesterProject/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/mehme/Documents/GitHub/System(Advanced C)/SemesterProject/build/CMakeFiles/rebuild_cache.dir
