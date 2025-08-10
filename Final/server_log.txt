@@ -40,3 +40,931 @@
 2025-05-30 18:37:57 - [FILE] Successfully transferred 'trial.txt' from ali to mehmet
 2025-05-30 18:38:01 - [SHUTDOWN] SIGINT received. Disconnecting 2 clients, saving logs.
 2025-05-30 18:38:01 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 01:02:43 - [CONNECT] user 'mehmet' connected from 127.0.0.1
+2025-06-28 01:03:52 - [COMMAND] mehmet joined room 'chat'
+2025-06-28 01:04:25 - [CONNECT] user 'ali' connected from 127.0.0.1
+2025-06-28 01:04:31 - [COMMAND] ali joined room 'chat'
+2025-06-28 01:04:49 - [COMMAND] mehmet broadcasted to 'chat'
+2025-06-28 01:05:29 - [COMMAND] mehmet sent whisper to ali
+2025-06-28 01:07:07 - [FILE-QUEUE] Upload 'trial.txt' from mehmet added to queue. Queue size: 1
+2025-06-28 01:07:07 - [COMMAND] mehmet initiated file transfer to ali
+2025-06-28 01:07:09 - [FILE] 'trial.txt' from user 'mehmet' started upload after 2 seconds in queue.
+2025-06-28 01:07:09 - [FILE] Successfully transferred 'trial.txt' from mehmet to ali
+2025-06-28 01:31:24 - [CONNECT] user 'ali2' connected from 127.0.0.1
+2025-06-28 01:31:33 - [CONNECT] user 'ali3' connected from 127.0.0.1
+2025-06-28 01:31:43 - [CONNECT] user 'ali4' connected from 127.0.0.1
+2025-06-28 01:31:52 - [CONNECT] user 'ali5' connected from 127.0.0.1
+2025-06-28 01:32:00 - [CONNECT] user 'ali6' connected from 127.0.0.1
+2025-06-28 01:32:09 - [CONNECT] user 'ali7' connected from 127.0.0.1
+2025-06-28 01:32:17 - [CONNECT] user 'ali8' connected from 127.0.0.1
+2025-06-28 01:32:24 - [CONNECT] user 'ali9' connected from 127.0.0.1
+2025-06-28 01:32:37 - [COMMAND] ali2 joined room 'chat'
+2025-06-28 01:32:45 - [COMMAND] ali3 joined room 'chat'
+2025-06-28 01:32:52 - [COMMAND] ali4 joined room 'chat'
+2025-06-28 01:33:15 - [COMMAND] ali5 joined room 'chat'
+2025-06-28 01:33:19 - [COMMAND] ali6 joined room 'chat'
+2025-06-28 01:33:22 - [COMMAND] ali7 joined room 'chat'
+2025-06-28 01:33:24 - [COMMAND] ali8 joined room 'chat'
+2025-06-28 01:33:27 - [COMMAND] ali9 joined room 'chat'
+2025-06-28 01:33:39 - [COMMAND] mehmet broadcasted to 'chat'
+2025-06-28 01:34:06 - [FILE-QUEUE] Upload 'trial.txt' from mehmet added to queue. Queue size: 1
+2025-06-28 01:34:06 - [COMMAND] mehmet initiated file transfer to ali8
+2025-06-28 01:34:08 - [FILE] 'trial.txt' from user 'mehmet' started upload after 2 seconds in queue.
+2025-06-28 01:34:08 - [FILE] Successfully transferred 'trial.txt' from mehmet to ali8
+2025-06-28 02:11:21 - [SHUTDOWN] SIGINT received. Disconnecting 10 clients, saving logs.
+2025-06-28 02:11:21 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:14:39 - [CONNECT] user 'testuser1' connected from 127.0.0.1
+2025-06-28 02:14:39 - [CONNECT] user 'testuser3' connected from 127.0.0.1
+2025-06-28 02:14:39 - [CONNECT] user 'testuser2' connected from 127.0.0.1
+2025-06-28 02:14:39 - [CONNECT] user 'testuser4' connected from 127.0.0.1
+2025-06-28 02:14:39 - [CONNECT] user 'testuser5' connected from 127.0.0.1
+2025-06-28 02:14:40 - [COMMAND] testuser1 joined room 'testroom'
+2025-06-28 02:14:40 - [COMMAND] testuser2 joined room 'testroom'
+2025-06-28 02:14:40 - [COMMAND] testuser4 joined room 'testroom'
+2025-06-28 02:14:40 - [COMMAND] testuser5 joined room 'testroom'
+2025-06-28 02:14:40 - [COMMAND] testuser3 joined room 'testroom'
+2025-06-28 02:14:41 - [COMMAND] testuser1 broadcasted to 'testroom'
+2025-06-28 02:14:41 - [COMMAND] testuser2 broadcasted to 'testroom'
+2025-06-28 02:14:41 - [COMMAND] testuser3 broadcasted to 'testroom'
+2025-06-28 02:14:41 - [COMMAND] testuser5 broadcasted to 'testroom'
+2025-06-28 02:14:41 - [COMMAND] testuser4 broadcasted to 'testroom'
+2025-06-28 02:14:43 - [DISCONNECT] Client testuser1 disconnected.
+2025-06-28 02:14:43 - [DISCONNECT] Client testuser3 disconnected.
+2025-06-28 02:14:43 - [DISCONNECT] Client testuser2 disconnected.
+2025-06-28 02:14:43 - [DISCONNECT] Client testuser4 disconnected.
+2025-06-28 02:14:43 - [DISCONNECT] Client testuser5 disconnected.
+2025-06-28 02:15:13 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client14' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client4' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client2' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 02:15:13 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 02:15:14 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client2 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client4 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client14 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 02:15:14 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:15:15 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload 'testfile_4.txt' from client4 added to queue. Queue size: 1
+2025-06-28 02:15:17 - [COMMAND] client4 initiated file transfer to client5
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload 'testfile_2.txt' from client2 added to queue. Queue size: 3
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client9 waiting for testfile_9.txt (estimated wait: 9 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload 'testfile_7.txt' from client7 added to queue. Queue size: 2
+2025-06-28 02:15:17 - [COMMAND] client2 initiated file transfer to client3
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client6 waiting for testfile_6.txt (estimated wait: 9 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload 'testfile_1.txt' from client1 added to queue. Queue size: 5
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client3 waiting for testfile_3.txt (estimated wait: 9 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client5 waiting for testfile_5.txt (estimated wait: 9 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client11 waiting for testfile_11.txt (estimated wait: 15 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client13 waiting for testfile_13.txt (estimated wait: 15 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload 'testfile_8.txt' from client8 added to queue. Queue size: 5
+2025-06-28 02:15:17 - [COMMAND] client1 initiated file transfer to client2
+2025-06-28 02:15:17 - [COMMAND] client7 initiated file transfer to client8
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client15 waiting for testfile_15.txt (estimated wait: 15 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client14 waiting for testfile_14.txt (estimated wait: 15 seconds)
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client10 waiting for testfile_10.txt (estimated wait: 15 seconds)
+2025-06-28 02:15:17 - [COMMAND] client8 initiated file transfer to client9
+2025-06-28 02:15:17 - [FILE-QUEUE] Upload queue full, client12 waiting for testfile_12.txt (estimated wait: 15 seconds)
+2025-06-28 02:15:18 - [FILE] 'testfile_2.txt' from user 'client2' started upload after 1 seconds in queue.
+2025-06-28 02:15:18 - [FILE] Successfully transferred 'testfile_2.txt' from client2 to client3
+2025-06-28 02:15:19 - [FILE] 'testfile_4.txt' from user 'client4' started upload after 2 seconds in queue.
+2025-06-28 02:15:19 - [FILE] 'testfile_7.txt' from user 'client7' started upload after 2 seconds in queue.
+2025-06-28 02:15:19 - [FILE] 'testfile_1.txt' from user 'client1' started upload after 2 seconds in queue.
+2025-06-28 02:15:19 - [FILE] Successfully transferred 'testfile_4.txt' from client4 to client5
+2025-06-28 02:15:19 - [FILE] Successfully transferred 'testfile_7.txt' from client7 to client8
+2025-06-28 02:15:19 - [FILE] Successfully transferred 'testfile_1.txt' from client1 to client2
+2025-06-28 02:15:20 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [FILE] 'testfile_8.txt' from user 'client8' started upload after 3 seconds in queue.
+2025-06-28 02:15:20 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:15:20 - [FILE] Successfully transferred 'testfile_8.txt' from client8 to client9
+2025-06-28 02:15:22 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client2 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client14 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 02:15:22 - [DISCONNECT] Client client4 disconnected.
+2025-06-28 02:15:59 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 02:15:59 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:20:39 - [CONNECT] user 'client4' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client14' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client2' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 02:20:39 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 02:20:40 - [COMMAND] client2 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client4 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client14 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 02:20:40 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:20:41 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload 'testfile_7.txt' from client7 added to queue. Queue size: 1
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload 'testfile_3.txt' from client3 added to queue. Queue size: 2
+2025-06-28 02:20:43 - [COMMAND] client7 initiated file transfer to client8
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload 'testfile_2.txt' from client2 added to queue. Queue size: 4
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client12 waiting for testfile_12.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [COMMAND] client2 initiated file transfer to client3
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client1 waiting for testfile_1.txt (estimated wait: 6 seconds)
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload 'testfile_9.txt' from client9 added to queue. Queue size: 3
+2025-06-28 02:20:43 - [COMMAND] client9 initiated file transfer to client10
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client14 waiting for testfile_14.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client13 waiting for testfile_13.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client10 waiting for testfile_10.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [COMMAND] client3 initiated file transfer to client4
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client11 waiting for testfile_11.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client15 waiting for testfile_15.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload 'testfile_5.txt' from client5 added to queue. Queue size: 5
+2025-06-28 02:20:43 - [COMMAND] client5 initiated file transfer to client6
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client6 waiting for testfile_6.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client8 waiting for testfile_8.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:43 - [FILE-QUEUE] Upload queue full, client4 waiting for testfile_4.txt (estimated wait: 15 seconds)
+2025-06-28 02:20:44 - [FILE] 'testfile_9.txt' from user 'client9' started upload after 1 seconds in queue.
+2025-06-28 02:20:44 - [FILE] Successfully transferred 'testfile_9.txt' from client9 to client10
+2025-06-28 02:20:45 - [FILE] 'testfile_7.txt' from user 'client7' started upload after 2 seconds in queue.
+2025-06-28 02:20:45 - [FILE] 'testfile_3.txt' from user 'client3' started upload after 2 seconds in queue.
+2025-06-28 02:20:45 - [FILE] 'testfile_2.txt' from user 'client2' started upload after 2 seconds in queue.
+2025-06-28 02:20:45 - [FILE] Successfully transferred 'testfile_7.txt' from client7 to client8
+2025-06-28 02:20:45 - [FILE] Successfully transferred 'testfile_3.txt' from client3 to client4
+2025-06-28 02:20:45 - [FILE] Successfully transferred 'testfile_2.txt' from client2 to client3
+2025-06-28 02:20:46 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [FILE] 'testfile_5.txt' from user 'client5' started upload after 3 seconds in queue.
+2025-06-28 02:20:46 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:20:46 - [FILE] Successfully transferred 'testfile_5.txt' from client5 to client6
+2025-06-28 02:20:48 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client4 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client14 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client2 disconnected.
+2025-06-28 02:20:48 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 02:21:24 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 02:21:24 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:23:56 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 02:23:56 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 02:23:57 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 02:23:57 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 02:23:57 - [REJECTED] Duplicate username attempted: client4/join tes
+2025-06-28 02:23:57 - [REJECTED] Duplicate username attempted: client14/join te
+2025-06-28 02:23:57 - [REJECTED] Duplicate username attempted: client2/join tes
+2025-06-28 02:23:58 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:23:58 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload 'trial.txt' from client12 added to queue. Queue size: 1
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload 'trial.txt' from client6 added to queue. Queue size: 4
+2025-06-28 02:24:00 - [ERROR] Sendfile from client1 failed: target user client2 not found or offline
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload 'trial.txt' from client7 added to queue. Queue size: 3
+2025-06-28 02:24:00 - [COMMAND] client7 initiated file transfer to client8
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload 'trial.txt' from client11 added to queue. Queue size: 5
+2025-06-28 02:24:00 - [COMMAND] client11 initiated file transfer to client12
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload queue full, client5 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:24:00 - [COMMAND] client6 initiated file transfer to client7
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload queue full, client3 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload 'trial.txt' from client15 added to queue. Queue size: 2
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload queue full, client8 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:24:00 - [ERROR] Sendfile from client13 failed: target user client14 not found or offline
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload queue full, client10 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:24:00 - [FILE-QUEUE] Upload queue full, client9 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:24:00 - [COMMAND] client15 initiated file transfer to client1
+2025-06-28 02:24:00 - [COMMAND] client12 initiated file transfer to client13
+2025-06-28 02:24:01 - [FILE] 'trial.txt' from user 'client7' started upload after 1 seconds in queue.
+2025-06-28 02:24:01 - [FILE] Successfully transferred 'trial.txt' from client7 to client8
+2025-06-28 02:24:02 - [FILE] 'trial.txt' from user 'client12' started upload after 2 seconds in queue.
+2025-06-28 02:24:02 - [FILE] 'trial.txt' from user 'client15' started upload after 2 seconds in queue.
+2025-06-28 02:24:02 - [FILE] Successfully transferred 'trial.txt' from client12 to client13
+2025-06-28 02:24:02 - [FILE] 'trial.txt' from user 'client6' started upload after 2 seconds in queue.
+2025-06-28 02:24:02 - [FILE] Successfully transferred 'trial.txt' from client15 to client1
+2025-06-28 02:24:02 - [FILE] Successfully transferred 'trial.txt' from client6 to client7
+2025-06-28 02:24:03 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [FILE] 'trial.txt' from user 'client11' started upload after 3 seconds in queue.
+2025-06-28 02:24:03 - [FILE] Successfully transferred 'trial.txt' from client11 to client12
+2025-06-28 02:24:03 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:24:03 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:24:05 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 02:24:05 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 02:24:10 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 02:24:10 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:25:07 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client2' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client14' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client4' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 02:25:07 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 02:25:08 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client4 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client2 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client14 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 02:25:08 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:25:09 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload 'trial.txt' from client12 added to queue. Queue size: 1
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client8 waiting for trial.txt (estimated wait: 3 seconds)
+2025-06-28 02:25:11 - [COMMAND] client12 initiated file transfer to client13
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload 'trial.txt' from client15 added to queue. Queue size: 3
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client6 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [COMMAND] client15 initiated file transfer to client1
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client2 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload 'trial.txt' from client14 added to queue. Queue size: 2
+2025-06-28 02:25:11 - [COMMAND] client14 initiated file transfer to client15
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client9 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload 'trial.txt' from client10 added to queue. Queue size: 5
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client5 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client11 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client1 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client3 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [COMMAND] client10 initiated file transfer to client11
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client4 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload queue full, client7 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:25:11 - [FILE-QUEUE] Upload 'trial.txt' from client13 added to queue. Queue size: 4
+2025-06-28 02:25:11 - [COMMAND] client13 initiated file transfer to client14
+2025-06-28 02:25:12 - [FILE] 'trial.txt' from user 'client15' started upload after 1 seconds in queue.
+2025-06-28 02:25:12 - [FILE] Successfully transferred 'trial.txt' from client15 to client1
+2025-06-28 02:25:13 - [FILE] 'trial.txt' from user 'client12' started upload after 2 seconds in queue.
+2025-06-28 02:25:13 - [FILE] 'trial.txt' from user 'client14' started upload after 2 seconds in queue.
+2025-06-28 02:25:13 - [FILE] 'trial.txt' from user 'client13' started upload after 2 seconds in queue.
+2025-06-28 02:25:13 - [FILE] Successfully transferred 'trial.txt' from client14 to client15
+2025-06-28 02:25:13 - [FILE] Successfully transferred 'trial.txt' from client12 to client13
+2025-06-28 02:25:13 - [FILE] Successfully transferred 'trial.txt' from client13 to client14
+2025-06-28 02:25:14 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [FILE] 'trial.txt' from user 'client10' started upload after 3 seconds in queue.
+2025-06-28 02:25:14 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [FILE] Successfully transferred 'trial.txt' from client10 to client11
+2025-06-28 02:25:14 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:25:14 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:25:16 - [DISCONNECT] Client client2 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client4 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client14 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 02:25:16 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 02:25:44 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 02:25:44 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient4' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient2' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient3' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient1' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient6' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient7' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient9' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient5' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient10' connected from 127.0.0.1
+2025-06-28 02:25:59 - [CONNECT] user 'fileclient8' connected from 127.0.0.1
+2025-06-28 02:26:00 - [COMMAND] fileclient1 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient2 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient3 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient4 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient5 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient6 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient7 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient9 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient10 joined room 'filetest'
+2025-06-28 02:26:00 - [COMMAND] fileclient8 joined room 'filetest'
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient2 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient1 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient3 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient5 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient10 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient7 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient9 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient8 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient6 disconnected.
+2025-06-28 02:26:02 - [DISCONNECT] Client fileclient4 disconnected.
+2025-06-28 02:26:44 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 02:26:44 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:27:50 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client2' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client14' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client4' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 02:27:50 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 02:27:51 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client2 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client4 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client14 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 02:27:51 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:27:52 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload 'trial.txt' from client4 added to queue. Queue size: 1
+2025-06-28 02:27:54 - [COMMAND] client4 initiated file transfer to client5
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload 'trial.txt' from client1 added to queue. Queue size: 3
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload 'trial.txt' from client3 added to queue. Queue size: 5
+2025-06-28 02:27:54 - [COMMAND] client1 initiated file transfer to client2
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client9 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload 'trial.txt' from client2 added to queue. Queue size: 2
+2025-06-28 02:27:54 - [COMMAND] client2 initiated file transfer to client3
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client7 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client13 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client8 waiting for trial.txt (estimated wait: 12 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client12 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client14 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client11 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [COMMAND] client3 initiated file transfer to client4
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client10 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload 'trial.txt' from client6 added to queue. Queue size: 4
+2025-06-28 02:27:54 - [COMMAND] client6 initiated file transfer to client7
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client5 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:54 - [FILE-QUEUE] Upload queue full, client15 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:27:55 - [FILE] 'trial.txt' from user 'client2' started upload after 1 seconds in queue.
+2025-06-28 02:27:55 - [FILE] Successfully transferred 'trial.txt' from client2 to client3
+2025-06-28 02:27:56 - [FILE] 'trial.txt' from user 'client4' started upload after 2 seconds in queue.
+2025-06-28 02:27:56 - [FILE] 'trial.txt' from user 'client1' started upload after 2 seconds in queue.
+2025-06-28 02:27:56 - [FILE] 'trial.txt' from user 'client3' started upload after 2 seconds in queue.
+2025-06-28 02:27:56 - [FILE] Successfully transferred 'trial.txt' from client4 to client5
+2025-06-28 02:27:56 - [FILE] Successfully transferred 'trial.txt' from client3 to client4
+2025-06-28 02:27:56 - [FILE] Successfully transferred 'trial.txt' from client1 to client2
+2025-06-28 02:27:57 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:27:57 - [FILE] 'trial.txt' from user 'client6' started upload after 3 seconds in queue.
+2025-06-28 02:27:57 - [FILE] Successfully transferred 'trial.txt' from client6 to client7
+2025-06-28 02:27:57 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:27:59 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client2 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client4 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client14 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 02:27:59 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 02:30:23 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 02:30:23 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:30:34 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client2' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client14' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client4' connected from 127.0.0.1
+2025-06-28 02:30:34 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 02:30:35 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client2 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client4 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client14 joined room 'testroom'
+2025-06-28 02:30:35 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:30:36 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload 'trial.txt' from client8 added to queue. Queue size: 1
+2025-06-28 02:30:38 - [COMMAND] client8 initiated file transfer to client9
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client14 waiting for trial.txt (estimated wait: 6 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload 'trial.txt' from client12 added to queue. Queue size: 4
+2025-06-28 02:30:38 - [COMMAND] client12 initiated file transfer to client13
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client3 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client6 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client2 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client4 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client7 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload 'trial.txt' from client15 added to queue. Queue size: 5
+2025-06-28 02:30:38 - [COMMAND] client15 initiated file transfer to client1
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client10 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload 'trial.txt' from client11 added to queue. Queue size: 2
+2025-06-28 02:30:38 - [COMMAND] client11 initiated file transfer to client12
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client9 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload 'trial.txt' from client13 added to queue. Queue size: 3
+2025-06-28 02:30:38 - [COMMAND] client13 initiated file transfer to client14
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client5 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:38 - [FILE-QUEUE] Upload queue full, client1 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:30:39 - [FILE] 'trial.txt' from user 'client13' started upload after 1 seconds in queue.
+2025-06-28 02:30:39 - [FILE] Successfully transferred 'trial.txt' from client13 to client14
+2025-06-28 02:30:40 - [FILE] 'trial.txt' from user 'client8' started upload after 2 seconds in queue.
+2025-06-28 02:30:40 - [FILE] 'trial.txt' from user 'client11' started upload after 2 seconds in queue.
+2025-06-28 02:30:40 - [FILE] 'trial.txt' from user 'client12' started upload after 2 seconds in queue.
+2025-06-28 02:30:40 - [FILE] Successfully transferred 'trial.txt' from client8 to client9
+2025-06-28 02:30:40 - [FILE] Successfully transferred 'trial.txt' from client11 to client12
+2025-06-28 02:30:40 - [FILE] Successfully transferred 'trial.txt' from client12 to client13
+2025-06-28 02:30:41 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [FILE] 'trial.txt' from user 'client15' started upload after 3 seconds in queue.
+2025-06-28 02:30:41 - [FILE] Successfully transferred 'trial.txt' from client15 to client1
+2025-06-28 02:30:41 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:30:41 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:30:43 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client4 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client2 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 02:30:43 - [DISCONNECT] Client client14 disconnected.
+2025-06-28 02:32:14 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 02:32:14 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 02:32:24 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client4' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client2' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client14' connected from 127.0.0.1
+2025-06-28 02:32:24 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 02:32:25 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client4 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client2 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client14 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 02:32:25 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:32:26 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload 'trial.txt' from client2 added to queue. Queue size: 1
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload 'trial.txt' from client3 added to queue. Queue size: 2
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload 'trial.txt' from client4 added to queue. Queue size: 4
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload 'trial.txt' from client6 added to queue. Queue size: 3
+2025-06-28 02:32:28 - [COMMAND] client4 initiated file transfer to client5
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client5 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client8 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [COMMAND] client2 initiated file transfer to client3
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client10 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client12 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client13 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload 'trial.txt' from client9 added to queue. Queue size: 5
+2025-06-28 02:32:28 - [COMMAND] client9 initiated file transfer to client10
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client15 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [COMMAND] client3 initiated file transfer to client4
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client14 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client1 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [COMMAND] client6 initiated file transfer to client7
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client7 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:28 - [FILE-QUEUE] Upload queue full, client11 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 02:32:29 - [FILE] 'trial.txt' from user 'client6' started upload after 1 seconds in queue.
+2025-06-28 02:32:29 - [FILE] Successfully transferred 'trial.txt' from client6 to client7
+2025-06-28 02:32:30 - [FILE] 'trial.txt' from user 'client2' started upload after 2 seconds in queue.
+2025-06-28 02:32:30 - [FILE] 'trial.txt' from user 'client4' started upload after 2 seconds in queue.
+2025-06-28 02:32:30 - [FILE] 'trial.txt' from user 'client3' started upload after 2 seconds in queue.
+2025-06-28 02:32:30 - [FILE] Successfully transferred 'trial.txt' from client2 to client3
+2025-06-28 02:32:30 - [FILE] Successfully transferred 'trial.txt' from client4 to client5
+2025-06-28 02:32:30 - [FILE] Successfully transferred 'trial.txt' from client3 to client4
+2025-06-28 02:32:31 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [FILE] 'trial.txt' from user 'client9' started upload after 3 seconds in queue.
+2025-06-28 02:32:31 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [FILE] Successfully transferred 'trial.txt' from client9 to client10
+2025-06-28 02:32:31 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 02:32:31 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 02:32:33 - [DISCONNECT] Client client4 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client2 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client14 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 02:32:33 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 09:07:29 - [CONNECT] user 'mehmet' connected from 127.0.0.1
+2025-06-28 09:07:33 - [COMMAND] mehmet joined room 'chat'
+2025-06-28 09:07:36 - [SHUTDOWN] SIGINT received. Disconnecting 1 clients, saving logs.
+2025-06-28 09:07:36 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
+2025-06-28 09:07:55 - [CONNECT] user 'client7' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client13' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client11' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client8' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client5' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client12' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client1' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client4' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client15' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client6' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client2' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client3' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client9' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client14' connected from 127.0.0.1
+2025-06-28 09:07:55 - [CONNECT] user 'client10' connected from 127.0.0.1
+2025-06-28 09:07:56 - [COMMAND] client1 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client2 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client4 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client6 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client5 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client8 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client7 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client3 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client9 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client10 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client14 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client15 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client13 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client11 joined room 'testroom'
+2025-06-28 09:07:56 - [COMMAND] client12 joined room 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 09:07:57 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload 'trial.txt' from client4 added to queue. Queue size: 1
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload 'trial.txt' from client1 added to queue. Queue size: 2
+2025-06-28 09:07:59 - [COMMAND] client1 initiated file transfer to client2
+2025-06-28 09:07:59 - [COMMAND] client4 initiated file transfer to client5
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload 'trial.txt' from client8 added to queue. Queue size: 4
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client7 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [COMMAND] client8 initiated file transfer to client9
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload 'trial.txt' from client5 added to queue. Queue size: 3
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client6 waiting for trial.txt (estimated wait: 9 seconds)
+2025-06-28 09:07:59 - [COMMAND] client5 initiated file transfer to client6
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client3 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client15 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client11 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client13 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload 'trial.txt' from client2 added to queue. Queue size: 5
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client12 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client9 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client10 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:07:59 - [COMMAND] client2 initiated file transfer to client3
+2025-06-28 09:07:59 - [FILE-QUEUE] Upload queue full, client14 waiting for trial.txt (estimated wait: 15 seconds)
+2025-06-28 09:08:00 - [FILE] 'trial.txt' from user 'client5' started upload after 1 seconds in queue.
+2025-06-28 09:08:00 - [FILE] Successfully transferred 'trial.txt' from client5 to client6
+2025-06-28 09:08:01 - [FILE] 'trial.txt' from user 'client4' started upload after 2 seconds in queue.
+2025-06-28 09:08:01 - [FILE] Successfully transferred 'trial.txt' from client4 to client5
+2025-06-28 09:08:01 - [FILE] 'trial.txt' from user 'client1' started upload after 2 seconds in queue.
+2025-06-28 09:08:01 - [FILE] Successfully transferred 'trial.txt' from client1 to client2
+2025-06-28 09:08:01 - [FILE] 'trial.txt' from user 'client8' started upload after 2 seconds in queue.
+2025-06-28 09:08:01 - [FILE] Successfully transferred 'trial.txt' from client8 to client9
+2025-06-28 09:08:02 - [COMMAND] client2 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client4 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client6 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client8 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client7 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [FILE] 'trial.txt' from user 'client2' started upload after 3 seconds in queue.
+2025-06-28 09:08:02 - [COMMAND] client10 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client11 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client1 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client3 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client14 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [FILE] Successfully transferred 'trial.txt' from client2 to client3
+2025-06-28 09:08:02 - [COMMAND] client12 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client9 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client15 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client13 broadcasted to 'testroom'
+2025-06-28 09:08:02 - [COMMAND] client5 broadcasted to 'testroom'
+2025-06-28 09:08:04 - [DISCONNECT] Client client2 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client4 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client7 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client8 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client9 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client5 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client13 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client14 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client6 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client1 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client10 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client12 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client11 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client3 disconnected.
+2025-06-28 09:08:04 - [DISCONNECT] Client client15 disconnected.
+2025-06-28 09:08:11 - [SHUTDOWN] SIGINT received. Disconnecting 0 clients, saving logs.
+2025-06-28 09:08:11 - [SHUTDOWN] Server shutdown complete. All resources cleaned up.
